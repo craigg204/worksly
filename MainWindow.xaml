@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskMaster"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="TaskMaster" SizeToContent="WidthAndHeight" ResizeMode="NoResize" 
+        WindowStyle="None" ShowInTaskbar="False" Topmost="True" 
+        WindowStartupLocation="CenterOwner" AllowsTransparency="True"
+        Background="Transparent" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Canvas Width="500" Height="152" Name="RootLayout">
+        <Rectangle Stroke="Black" StrokeThickness="1" Name="UIPath"
+                   Width="500" Height="152" RadiusX="35" RadiusY="35">
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF0F0F0F" Offset="1"/>
+                    <GradientStop Color="#FF212123" Offset="0.291"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Button x:Name="CloseButton" Content="X" Style="{StaticResource exitBtn}"  HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" FontFamily="Arial" ForceCursor="True" Width="20" Height="20" RenderTransformOrigin="1.2,1.25" Canvas.Left="470" Canvas.Top="10"/>
+        <Label Canvas.Left="10" Foreground="White" FontSize="18" FontFamily="Courier New" Canvas.Top="6">
+            <Label.Content>
+                <TextBlock>
+                    <Run Typography.Capitals="SmallCaps" Text="Task"/><Run Typography.Capitals="SmallCaps" Text="Master"/>
+                </TextBlock>
+            </Label.Content>
+        </Label>
+        <Border Height="1" Canvas.Left="15" Canvas.Top="31" Width="165">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="Black" Offset="1" />
+                    <GradientStop Color="#FFC3C3C3"/>
+                    <GradientStop Color="#FFC3C3C3" Offset="0.65"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <TextBox x:Name="taskEntry" Height="60" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="40" Width="430" Foreground="White" SelectionBrush="#FF575757" Padding="4" SpellCheck.IsEnabled="True" BorderThickness="0" CaretBrush="White">
+            <TextBox.Background>
+                <SolidColorBrush Color="White" Opacity="0.1"/>
+            </TextBox.Background>
+        </TextBox>
+        <Button x:Name="submitButton" Style="{StaticResource submitBtn}" Content="Submit" Canvas.Left="212" Canvas.Top="115" Width="75" Height="27"/>
+    </Canvas>
 </Window>
