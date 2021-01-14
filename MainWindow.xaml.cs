@@ -31,6 +31,7 @@ namespace TaskMaster
 
         public MainWindow()
         {
+
             InitializeComponent();
 
             CommandBinding cb = new CommandBinding(taskSubmit, SubmitExecuted, SubmitCanExecute);
@@ -70,7 +71,7 @@ namespace TaskMaster
             //MessageBox.Show(taskText);
             submitButton.Style = (Style)Application.Current.Resources["submitBtn"];
             e.Handled = true;
-            this.Close();
+            Application.Current.MainWindow.Hide();
         }
         private void CreateTask(string subject)
         {
@@ -82,13 +83,13 @@ namespace TaskMaster
 
         private void CloseCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = true;
+            e.CanExecute = Application.Current.MainWindow != null;
         }
 
         private void CloseExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             e.Handled = true;
-            this.Close();
+            Application.Current.MainWindow.Hide();
         }
     }
 }

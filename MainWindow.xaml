@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:tb="http://www.hardcodet.net/taskbar" 
         xmlns:local="clr-namespace:TaskMaster"
         mc:Ignorable="d"
         Title="TaskMaster" SizeToContent="WidthAndHeight" ResizeMode="NoResize" 
@@ -19,7 +20,10 @@
                 </RadialGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Button x:Name="CloseButton" Content="X" Style="{StaticResource exitBtn}"  HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" FontFamily="Arial" ForceCursor="True" Width="20" Height="20" RenderTransformOrigin="1.2,1.25" Canvas.Left="470" Canvas.Top="10"/>
+        <Button x:Name="CloseButton" Content="X" Style="{StaticResource exitBtn}"
+                HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" 
+                FontFamily="Arial" ForceCursor="True" Width="20" Height="20" 
+                RenderTransformOrigin="1.2,1.25" Canvas.Left="470" Canvas.Top="10"/>
         <Label Canvas.Left="10" Foreground="White" FontSize="18" FontFamily="Courier New" Canvas.Top="6">
             <Label.Content>
                 <TextBlock>
