@@ -87,11 +87,14 @@ namespace TaskMaster
                             {
                                 if(Application.Current.MainWindow.IsVisible)
                                 {
+                                    taskEntry.Text = null;
                                     Application.Current.MainWindow.Hide();
                                 }
                                 else
                                 {
+                                    taskEntry.Text = null;
                                     Application.Current.MainWindow.Show();
+                                    taskEntry.Focus();
                                 }
                             }
                             handled = true;
@@ -110,6 +113,7 @@ namespace TaskMaster
             _source.AddHook(HwndHook);
 
             RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_SPACE);
+            Application.Current.MainWindow.Hide();
         }
         protected override void OnClosed(EventArgs e)
         {
@@ -134,6 +138,7 @@ namespace TaskMaster
             //MessageBox.Show(taskText);
             submitButton.Style = (Style)Application.Current.Resources["submitBtn"];
             e.Handled = true;
+            taskEntry.Text = null;
             Application.Current.MainWindow.Hide();
         }
         private void CreateTask(string subject)
@@ -152,6 +157,7 @@ namespace TaskMaster
         private void CloseExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             e.Handled = true;
+            taskEntry.Text = null;
             Application.Current.MainWindow.Hide();
         }
     }

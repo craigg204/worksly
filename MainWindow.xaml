@@ -8,8 +8,8 @@
         mc:Ignorable="d"
         Title="TaskMaster" SizeToContent="WidthAndHeight" ResizeMode="NoResize" 
         WindowStyle="None" ShowInTaskbar="False" Topmost="True" 
-        WindowStartupLocation="CenterOwner" AllowsTransparency="True"
-        Background="Transparent" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        WindowStartupLocation="CenterScreen" AllowsTransparency="True"
+        Background="Transparent" MouseLeftButtonDown="Window_MouseLeftButtonDown" Visibility="Visible">
     <Canvas Width="500" Height="152" Name="RootLayout">
         <Rectangle Stroke="Black" StrokeThickness="1" Name="UIPath"
                    Width="500" Height="152" RadiusX="35" RadiusY="35">
