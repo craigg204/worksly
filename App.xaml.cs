@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Hardcodet.Wpf.TaskbarNotification;
+using System.Windows.Interop;
+using System.Runtime.InteropServices;
 
 namespace TaskMaster
 {
@@ -19,17 +21,18 @@ namespace TaskMaster
     /// </summary>
     public partial class App : Application
     {
-        private TaskbarIcon tb;
 
+        private TaskbarIcon tb;
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             //initialize NotifyIcon
             tb = (TaskbarIcon)FindResource("TaskBarIcon");
         }
+
         protected override void OnExit(ExitEventArgs e)
         {
-            tb.Dispose(); //the icon would clean up automatically, but this is cleaner
+            //tb.Dispose; //the icon would clean up automatically, but this is cleaner
             base.OnExit(e);
         }
     }
