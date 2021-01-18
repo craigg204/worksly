@@ -32,7 +32,7 @@ namespace TaskMaster
 
         protected override void OnExit(ExitEventArgs e)
         {
-            //tb.Dispose; //the icon would clean up automatically, but this is cleaner
+            //tb. //the icon would clean up automatically, but this is cleaner
             base.OnExit(e);
         }
     }

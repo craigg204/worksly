@@ -94,6 +94,7 @@ namespace TaskMaster
                                 {
                                     taskEntry.Text = null;
                                     Application.Current.MainWindow.Show();
+                                    Application.Current.MainWindow.Activate();
                                     taskEntry.Focus();
                                 }
                             }
@@ -103,6 +104,11 @@ namespace TaskMaster
                     break;
             }
             return IntPtr.Zero;
+        }
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+            taskEntry.Focus();
         }
         protected override void OnSourceInitialized(EventArgs e)
         {
@@ -134,7 +140,7 @@ namespace TaskMaster
         {
             string taskText = taskEntry.Text;
             submitButton.Style = (Style)Application.Current.Resources["submitBtnPressed"];
-            CreateTask(taskText);
+            if (taskEntry.Text.Length != 0) { CreateTask(taskText); }
             //MessageBox.Show(taskText);
             submitButton.Style = (Style)Application.Current.Resources["submitBtn"];
             e.Handled = true;

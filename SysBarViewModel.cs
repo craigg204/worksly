@@ -33,6 +33,7 @@ namespace TaskMaster
                     {
                         //Application.Current.MainWindow = new MainWindow();
                         Application.Current.MainWindow.Show();
+                        Application.Current.MainWindow.Activate();
                     }
                 };
             }
