@@ -22,17 +22,18 @@ namespace TaskMaster
     public partial class App : Application
     {
 
-        private TaskbarIcon tb;
+        private Hardcodet.Wpf.TaskbarNotification.TaskbarIcon tb;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             //initialize NotifyIcon
-            tb = (TaskbarIcon)FindResource("TaskBarIcon");
+            tb = (Hardcodet.Wpf.TaskbarNotification.TaskbarIcon)FindResource("MyTaskBarIcon");
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
-            //tb. //the icon would clean up automatically, but this is cleaner
+            tb.Dispose(); //the icon would clean up automatically, but this is cleaner
             base.OnExit(e);
         }
     }
