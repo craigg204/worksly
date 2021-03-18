@@ -34,10 +34,6 @@ namespace TaskMaster
             CommandBinding cb = new CommandBinding(taskSubmit, SubmitExecuted, SubmitCanExecute);
             this.CommandBindings.Add(cb);
 
-            KeyGesture kg = new KeyGesture(Key.Enter);
-            InputBinding ib = new InputBinding(taskSubmit, kg);
-            this.InputBindings.Add(ib);
-
             submitButton.Command = taskSubmit;
         }
         protected override void OnActivated(EventArgs e)
@@ -47,26 +43,47 @@ namespace TaskMaster
         }
         private void SubmitCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (selfWins.Text.Length != 0) { e.CanExecute = true; }
+            //if (selfWins.Text.Length > 10)
+            { e.CanExecute = true; }
         }
 
         private void SubmitExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             string winsText = selfWins.Text;
+            string feedbackText = feedback.Text;
             submitButton.Style = (Style)Application.Current.Resources["submitBtnPressed"];
-            //if (selfWins.Text.Length != 0) { CreateTask(winsText); }
-            //MessageBox.Show(taskText);
+            if (selfWins.Text.Length != 0)
+            { 
+                CreateTask(("Win " + DateTime.Now.ToString("dd/MM/yyy")+" - " + winsText), false); 
+            }
+            //MessageBox.Show(winsText);
+            if (feedbackText.Length != 0) { LogFeedback(feedbackText); }
             submitButton.Style = (Style)Application.Current.Resources["submitBtn"];
             e.Handled = true;
             selfWins.Text = null;
             this.Close();
         }
-        private void CreateTask(string subject)
+        private void CreateTask(string subject, bool feedbackTask)
         {
             Outlook.ApplicationClass app = new Outlook.ApplicationClass();
             Outlook.TaskItem tsk = (Outlook.TaskItem)app.CreateItem(Outlook.OlItemType.olTaskItem);
             tsk.Subject = subject;
             tsk.Save();
+            if (feedbackTask == true)
+            {
+                Outlook.MAPIFolder folder = (Outlook.MAPIFolder)app.Session.Folders["cgutman@epic.com"].Folders["Tasks"].Folders["Feedback to Give"];
+                tsk.Move(folder);
+            }
+        }
+        private void LogFeedback(string inputStr)
+        {
+            string[] feedbackArry = inputStr.Split('\n');
+            string feedbackSubject;
+            foreach (string i in feedbackArry)
+            {
+                feedbackSubject = i + " - " + DateTime.Now.ToString("dd/MM/yyy");
+                CreateTask(feedbackSubject,true);
+            }
         }
     }
 }

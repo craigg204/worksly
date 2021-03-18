@@ -36,7 +36,7 @@
         <TextBox x:Name="selfWins" Height="60" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="61" 
                  Width="430" Foreground="White" SelectionBrush="#FF575757" Padding="4" 
                  SpellCheck.IsEnabled="True" BorderThickness="0" CaretBrush="White" FontSize="16" 
-                 MaxLines="2" MinLines="1">
+                 MaxLines="2" MinLines="1" AcceptsReturn="True">
             <TextBox.Background>
                 <SolidColorBrush Color="White" Opacity="0.1"/>
             </TextBox.Background>
@@ -46,7 +46,7 @@
         <TextBox x:Name="feedback" Height="60" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="146" 
             Width="430" Foreground="White" SelectionBrush="#FF575757" Padding="4" 
             SpellCheck.IsEnabled="True" BorderThickness="0" CaretBrush="White" FontSize="16" 
-            MaxLines="2" MinLines="1">
+            AcceptsReturn="True">
             <TextBox.Background>
                 <SolidColorBrush Color="White" Opacity="0.1"/>
             </TextBox.Background>
