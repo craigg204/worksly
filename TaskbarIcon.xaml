@@ -13,6 +13,7 @@
         <tb:TaskbarIcon.ContextMenu>
             <ContextMenu>
                 <MenuItem Header="New Task" Command="{Binding ShowWindowCommand}"/>
+                <MenuItem Header="End of Day" Command="{Binding EODWindowCommand}"/>
                 <Separator/>
                 <MenuItem Header="Exit App" Command="{Binding ExitApplicationCommand}"/>
             </ContextMenu>
@@ -60,6 +61,15 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#FFD6D6D6" TargetName="Border"/>
+                            <Setter Property="Background" TargetName="Border">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="White" Opacity="0.3"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Foreground" Value="#FFD6D6D6"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
                             <Setter Property="BorderBrush" Value="#FFD6D6D6" TargetName="Border"/>
                             <Setter Property="Background" TargetName="Border">
                                 <Setter.Value>

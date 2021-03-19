@@ -23,7 +23,7 @@
         <Button x:Name="CloseButton" Content="X" Style="{StaticResource exitBtn}"
                 HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" 
                 FontFamily="Arial" ForceCursor="True" Width="20" Height="20" 
-                RenderTransformOrigin="1.2,1.25" Canvas.Left="470" Canvas.Top="10"/>
+                RenderTransformOrigin="1.2,1.25" Canvas.Left="470" Canvas.Top="10" IsTabStop="False"/>
         <Label Canvas.Left="10" Foreground="White" FontSize="18" FontFamily="Courier New" Canvas.Top="6">
             <Label.Content>
                 <TextBlock>

@@ -54,6 +54,25 @@ namespace TaskMaster
             }
         }
 
+        /// <summary>
+        /// Hides the main window if open and opens the EOD window
+        /// </summary>
+        public ICommand EODWindowCommand
+        {
+            get
+            {
+                return new DelegateCommand
+                {
+                    CommandAction = () => 
+                    { 
+                        if (Application.Current.MainWindow != null) { Application.Current.MainWindow.Hide(); }
+                        EODWindow window1 = new EODWindow();
+                        window1.Show();
+                    }
+                };
+            }
+        }
+
 
         /// <summary>
         /// Shuts down the application.

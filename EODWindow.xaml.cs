@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Windows.Interop;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace TaskMaster
 {
@@ -41,6 +42,10 @@ namespace TaskMaster
             base.OnActivated(e);
             selfWins.Focus();
         }
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
         private void SubmitCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             //if (selfWins.Text.Length > 10)
@@ -52,10 +57,10 @@ namespace TaskMaster
             string winsText = selfWins.Text;
             string feedbackText = feedback.Text;
             submitButton.Style = (Style)Application.Current.Resources["submitBtnPressed"];
-            if (selfWins.Text.Length != 0)
-            { 
-                CreateTask(("Win " + DateTime.Now.ToString("dd/MM/yyy")+" - " + winsText), false); 
-            }
+            if (selfWins.Text.Length != 0) { SaveWins(winsText); }
+            //{ 
+            //    CreateTask(("Win " + DateTime.Now.ToString("dd/MM/yyy")+" - " + winsText), false); 
+            //}
             //MessageBox.Show(winsText);
             if (feedbackText.Length != 0) { LogFeedback(feedbackText); }
             submitButton.Style = (Style)Application.Current.Resources["submitBtn"];
@@ -84,6 +89,19 @@ namespace TaskMaster
                 feedbackSubject = i + " - " + DateTime.Now.ToString("dd/MM/yyy");
                 CreateTask(feedbackSubject,true);
             }
+        }
+        private void SaveWins(string inputStr)
+        {
+            inputStr = inputStr.Replace("\r", "");
+            string[] inputArry = inputStr.Split('\n');
+            string FileName = "C:\\Users\\cgutman\\OneDrive - epic.com\\Documents\\DailyWins.txt";
+            StreamWriter sw = File.AppendText(FileName);
+            foreach (string i in inputArry)
+            {
+                sw.WriteLine((DateTime.Now.ToString("yyyy.MM.dd") + " - " + i));
+                
+            }
+            sw.Close();
         }
     }
 }

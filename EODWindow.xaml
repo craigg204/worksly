@@ -9,7 +9,7 @@
         Title="TaskMaster" SizeToContent="WidthAndHeight" ResizeMode="NoResize" 
         WindowStyle="None" ShowInTaskbar="False" Topmost="True" 
         WindowStartupLocation="CenterScreen" AllowsTransparency="True"
-        Background="Transparent" Visibility="Visible">
+        Background="Transparent" MouseLeftButtonDown="Window_MouseLeftButtonDown" Visibility="Visible">
     <Canvas Width="500" Height="252" Name="RootLayout">
         <Rectangle Stroke="Black" StrokeThickness="1" Name="UIPath"
                    Width="500" Height="252" RadiusX="35" RadiusY="35">
@@ -41,8 +41,6 @@
                 <SolidColorBrush Color="White" Opacity="0.1"/>
             </TextBox.Background>
         </TextBox>
-        <Button x:Name="submitButton" Style="{StaticResource submitBtn}" Content="Submit" Canvas.Left="212"
-                Canvas.Top="215" Width="75" Height="27"/>
         <TextBox x:Name="feedback" Height="60" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="146" 
             Width="430" Foreground="White" SelectionBrush="#FF575757" Padding="4" 
             SpellCheck.IsEnabled="True" BorderThickness="0" CaretBrush="White" FontSize="16" 
@@ -51,6 +49,8 @@
                 <SolidColorBrush Color="White" Opacity="0.1"/>
             </TextBox.Background>
         </TextBox>
+        <Button x:Name="submitButton" Style="{StaticResource submitBtn}" Content="Submit" Canvas.Left="212"
+                Canvas.Top="215" Width="75" Height="27"/>
         <Label Canvas.Left="36" Foreground="#FF959595" FontSize="14" FontFamily="Courier New" Canvas.Top="36">
             <TextBlock><Run Typography.Capitals="SmallCaps" Text="Personal Wins"/></TextBlock>
         </Label>
