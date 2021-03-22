@@ -29,11 +29,13 @@ namespace TaskMaster
             base.OnStartup(e);
             //initialize NotifyIcon
             tb = (Hardcodet.Wpf.TaskbarNotification.TaskbarIcon)FindResource("MyTaskBarIcon");
+            HelperTags.Schedule_Timer();
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
             tb.Dispose(); //the icon would clean up automatically, but this is cleaner
+            HelperTags.StopTimer();
             base.OnExit(e);
         }
     }

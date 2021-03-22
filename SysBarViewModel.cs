@@ -73,6 +73,23 @@ namespace TaskMaster
             }
         }
 
+        /// <summary>
+        /// Open settings menu
+        /// </summary>
+        public ICommand SettingsWindow
+        {
+            get
+            {
+                return new DelegateCommand
+                {
+                    CommandAction = () =>
+                    {
+                        Settings window1 = new Settings();
+                        window1.Show();
+                    }
+                };
+            }
+        }
 
         /// <summary>
         /// Shuts down the application.
@@ -83,6 +100,10 @@ namespace TaskMaster
             {
                 return new DelegateCommand { CommandAction = () => Application.Current.Shutdown() };
             }
+        }
+        public bool EODMode()
+        {
+            return Settings1.Default.EODHardMode;
         }
     }
 

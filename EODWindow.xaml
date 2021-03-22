@@ -20,6 +20,11 @@
                 </RadialGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
+        <Button x:Name="CloseButton" Content="X" Style="{StaticResource exitBtn}"
+                HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" 
+                FontFamily="Arial" ForceCursor="True" Width="20" Height="20" 
+                RenderTransformOrigin="1.2,1.25" Canvas.Left="470" Canvas.Top="10" IsTabStop="False" 
+                Click="CloseButton_Click" Visibility="Hidden"/>
         <Label Canvas.Left="192" Foreground="White" FontSize="18" FontFamily="Courier New" Canvas.Top="6">
             <TextBlock><Run Typography.Capitals="SmallCaps" Text="End of Day"/></TextBlock>
         </Label>
@@ -57,5 +62,29 @@
         <Label Canvas.Left="36" Foreground="#FF959595" FontSize="14" FontFamily="Courier New" Canvas.Top="122">
             <TextBlock><Run Typography.Capitals="SmallCaps" Text="Feedback To Give"/></TextBlock>
         </Label>
+        <Rectangle Stroke="Black" StrokeThickness="1" Name="warningMask"
+                   Width="500" Height="252" RadiusX="35" RadiusY="35" Opacity="0.7" Visibility="Hidden">
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF0F0F0F" Offset="1"/>
+                    <GradientStop Color="#FF212123" Offset="0.291"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Stroke="Gray" StrokeThickness="1" Name="warningMessage"
+                   Width="400" Height="75" RadiusX="35" RadiusY="35" Canvas.Left="50"
+                   Canvas.Top="100" Fill="Black" Visibility="Hidden">
+        </Rectangle>
+        <Label Canvas.Left="100" Foreground="#FF959595" FontSize="14" FontFamily="Courier New" Canvas.Top="103"
+               Name="warningLabel" Visibility="Hidden">
+            <TextBlock TextAlignment="Center" Width ="300" TextWrapping="WrapWithOverflow" Foreground="Red">
+                <Run FontWeight="Bold" Typography.Capitals="SmallCaps" Text="You have not entered any feedback!"/>
+                <Run FontWeight="Bold" Typography.Capitals="SmallCaps" Text="Do you want to continue?"/>
+            </TextBlock>
+        </Label>
+        <Button x:Name="warningYes" Style="{StaticResource submitBtn}" Content="Yes" Width="75" Height="25"
+                Canvas.Left="160" Canvas.Top="145" Visibility="Hidden"/>
+        <Button x:Name="warningNo" Style="{StaticResource submitBtn}" Content="No" Width="75" Height="25"
+                Canvas.Left="270" Canvas.Top="145" Visibility="Hidden"/>
     </Canvas>
 </Window>

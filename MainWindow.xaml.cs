@@ -147,20 +147,20 @@ namespace TaskMaster
                 window1.Show();
                 return;
             }
-            if (taskEntry.Text.Length != 0) { CreateTask(taskText); }
+            if (taskEntry.Text.Length != 0) { EODWindow.CreateTask(taskText, false); }
             //MessageBox.Show(taskText);
             submitButton.Style = (Style)Application.Current.Resources["submitBtn"];
             e.Handled = true;
             taskEntry.Text = null;
             Application.Current.MainWindow.Hide();
         }
-        private void CreateTask(string subject)
-        {
-            Outlook.ApplicationClass app = new Outlook.ApplicationClass();
-            Outlook.TaskItem tsk = (Outlook.TaskItem)app.CreateItem(Outlook.OlItemType.olTaskItem);
-            tsk.Subject = subject;
-            tsk.Save();
-        }
+        //private void CreateTask(string subject)
+        //{
+        //    Outlook.ApplicationClass app = new Outlook.ApplicationClass();
+        //    Outlook.TaskItem tsk = (Outlook.TaskItem)app.CreateItem(Outlook.OlItemType.olTaskItem);
+        //    tsk.Subject = subject;
+        //    tsk.Save();
+        //}
 
         private void CloseCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
