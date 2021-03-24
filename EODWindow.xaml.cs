@@ -126,18 +126,6 @@ namespace TaskMaster
             feedback.Text = null;
             this.Close();
         }
-        public static void CreateTask(string subject, bool feedbackTask)
-        {
-            Outlook.ApplicationClass app = new Outlook.ApplicationClass();
-            Outlook.TaskItem tsk = (Outlook.TaskItem)app.CreateItem(Outlook.OlItemType.olTaskItem);
-            tsk.Subject = subject;
-            tsk.Save();
-            if (feedbackTask == true)
-            {
-                Outlook.MAPIFolder folder = (Outlook.MAPIFolder)app.Session.Folders["cgutman@epic.com"].Folders["Tasks"].Folders["Feedback to Give"];
-                tsk.Move(folder);
-            }
-        }
         private void LogFeedback(string inputStr)
         {
             string[] feedbackArry = inputStr.Split('\n');
@@ -145,7 +133,7 @@ namespace TaskMaster
             foreach (string i in feedbackArry)
             {
                 feedbackSubject = i + " - " + DateTime.Now.ToString("dd/MM/yyy");
-                CreateTask(feedbackSubject,true);
+                HelperTags.CreateTask(feedbackSubject,true);
             }
         }
         private void SaveWins(string inputStr)

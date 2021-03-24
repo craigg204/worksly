@@ -11,9 +11,9 @@
         WindowStyle="None" ShowInTaskbar="False" Topmost="True" 
         WindowStartupLocation="CenterScreen" AllowsTransparency="True"
         Background="Transparent" MouseLeftButtonDown="Window_MouseLeftButtonDown" Visibility="Visible">
-    <Canvas Width="500" Height="152" Name="RootLayout">
+    <Canvas Width="500" Height="160" Name="RootLayout">
         <Rectangle Stroke="Black" StrokeThickness="1" Name="UIPath"
-                   Width="500" Height="152" RadiusX="35" RadiusY="35">
+                   Width="500" Height="160" RadiusX="35" RadiusY="35">
             <Rectangle.Fill>
                 <RadialGradientBrush>
                     <GradientStop Color="#FF0F0F0F" Offset="1"/>
@@ -42,10 +42,10 @@
             </Border.Background>
         </Border>
         <xctk:TimePicker x:Name="EODscheduledTime" TimeInterval="0:30:0" DisplayDefaultValueOnEmptyText="True" 
-                         DefaultValue="03/22/2021 17:00:00" Canvas.Left="251" Canvas.Top="42" Format="Custom" 
-                         FormatString="HH:mm:ss" Width="141" Background="Black" Foreground="#FFDDDDDD" 
-                         FontSize="16" RenderTransformOrigin="0.587,0.298" />
-        <Label Canvas.Left="72" Foreground="White" FontSize="16" FontFamily="Courier New" Canvas.Top="43">
+                         DefaultValue="03/22/2021 17:00:00" Canvas.Left="335" Canvas.Top="44" Format="Custom" 
+                         FormatString="HH:mm:ss" Width="108" Background="Black" Foreground="#FFDDDDDD" 
+                         FontSize="14" RenderTransformOrigin="0.587,0.298" />
+        <Label Canvas.Left="38" Foreground="White" FontSize="16" FontFamily="Courier New" Canvas.Top="42">
             <Label.Content>
                 <TextBlock RenderTransformOrigin="0.999,2.115">
                     <Run Typography.Capitals="SmallCaps" Text="End of Day Time:"/>
@@ -53,10 +53,16 @@
             </Label.Content>
         </Label>
         <Button x:Name="saveButton" Style="{StaticResource submitBtn}" Content="Save" Canvas.Left="212"
-                Canvas.Top="115" Width="75" Height="27"/>
-        <Label Canvas.Left="72" Foreground="White" FontSize="16" FontFamily="Courier New" Canvas.Top="70">
+                Canvas.Top="110" Width="76" Height="27"/>
+        <Label Canvas.Left="38" Foreground="White" FontSize="16" FontFamily="Courier New" Canvas.Top="66">
             <TextBlock RenderTransformOrigin="0.999,2.115"><Run Typography.Capitals="SmallCaps" Text="End of Day Time Hardmode:"/></TextBlock>
         </Label>
-        <CheckBox x:Name="EODHardMode_Box" Canvas.Left="328" Canvas.Top="78" />
+        <CheckBox x:Name="EODHardMode_Box" Canvas.Left="381" Canvas.Top="73" />
+        <Label Canvas.Left="65" Foreground="#FF6A6A6A" FontSize="12" FontFamily="Courier New" Canvas.Top="139">
+            <Label.Content>
+                <TextBlock x:Name="nextScheduledTimer" RenderTransformOrigin="0.999,2.115"
+                           Text="Next scheduled end of day pop-up: 23.03.2021 17:00"/>
+            </Label.Content>
+        </Label>
     </Canvas>
 </Window>

@@ -28,6 +28,7 @@ namespace TaskMaster
         private readonly TimeSpan scheduledTime = Settings1.Default.EODTime;
         private readonly bool EODHardMode = Settings1.Default.EODHardMode;
         private readonly DateTime today = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+        const string timerMessage = "Next scheduled end of day pop-up: ";
 
         public Settings()
         {
@@ -49,8 +50,10 @@ namespace TaskMaster
             InputBinding ib1 = new InputBinding(closeApp, kg1);
             this.InputBindings.Add(ib1);
 
+            DateTime nextTimer = HelperTags.NextTimerEvent();
             EODHardMode_Box.IsChecked = EODHardMode;
             EODscheduledTime.Value = today.Add(scheduledTime);
+            nextScheduledTimer.Text = timerMessage + nextTimer.ToString("dd.MM.yyyy HH:mm");
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
