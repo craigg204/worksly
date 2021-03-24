@@ -64,6 +64,8 @@ namespace TaskMaster
 
         private static void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            StopTimer();
+
             Application.Current.Dispatcher.Invoke((Action)delegate
             {
                 EODWindow window1 = new EODWindow();
