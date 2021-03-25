@@ -46,5 +46,41 @@ namespace TaskMaster {
                 this["EODHardMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string winsSavePath {
+            get {
+                return ((string)(this["winsSavePath"]));
+            }
+            set {
+                this["winsSavePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string winsSaveFile {
+            get {
+                return ((string)(this["winsSaveFile"]));
+            }
+            set {
+                this["winsSaveFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string feedbackFolder {
+            get {
+                return ((string)(this["feedbackFolder"]));
+            }
+            set {
+                this["feedbackFolder"] = value;
+            }
+        }
     }
 }

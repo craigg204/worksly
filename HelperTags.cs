@@ -91,9 +91,39 @@ namespace TaskMaster
             tsk.Save();
             if (feedbackTask == true)
             {
-                Outlook.MAPIFolder folder = (Outlook.MAPIFolder)app.Session.Folders["cgutman@epic.com"].Folders["Tasks"].Folders["Feedback to Give"];
+                Outlook.MAPIFolder folder = GetFolder(Settings1.Default.feedbackFolder); //(Outlook.MAPIFolder)app.Session.Folders["\\\\cgutman@epic.com\\Tasks\\Feedback to Give"];
                 tsk.Move(folder);
             }
+        }
+        // Returns Folder object based on folder path
+        private static Outlook.MAPIFolder GetFolder(string folderPath)
+        {
+            Outlook.MAPIFolder folder;
+            Outlook.ApplicationClass app = new Outlook.ApplicationClass();
+            string backslash = @"\";
+            try
+            {
+                if (folderPath.StartsWith(@"\\"))
+                {
+                    folderPath = folderPath.Remove(0, 2);
+                }
+                String[] folders = folderPath.Split(backslash.ToCharArray());
+                folder = app.Session.Folders[folders[0]];
+                if (folder != null)
+                {
+                    for (int i = 1; i <= folders.GetUpperBound(0); i++)
+                    {
+                       Outlook.Folders subFolders = folder.Folders;
+                        folder = subFolders[folders[i]];
+                        if (folder == null)
+                        {
+                            return null;
+                        }
+                    }
+                }
+                return folder;
+            }
+            catch { return null; }
         }
     }
 }

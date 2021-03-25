@@ -126,6 +126,9 @@
     <Compile Include="EODWindow.xaml.cs">
       <DependentUpon>EODWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OutlookFolder.xaml.cs">
+      <DependentUpon>OutlookFolder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OutlookFolder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -205,6 +212,22 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\AddForm_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\bulkArrow.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\endArrow.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\lineArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\endArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\endArrow-White.png" />
+    <Resource Include="Icons\lineArrow-White.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

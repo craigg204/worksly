@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace TaskMaster
 {
     /// <summary>
@@ -49,13 +50,19 @@ namespace TaskMaster
             KeyGesture kg1 = new KeyGesture(Key.Escape);
             InputBinding ib1 = new InputBinding(closeApp, kg1);
             this.InputBindings.Add(ib1);
+            LoadSettings();
+            
+        }
 
+        private void LoadSettings()
+        {
             DateTime nextTimer = HelperTags.NextTimerEvent();
             EODHardMode_Box.IsChecked = EODHardMode;
             EODscheduledTime.Value = today.Add(scheduledTime);
             nextScheduledTimer.Text = timerMessage + nextTimer.ToString("dd.MM.yyyy HH:mm");
+            winsSavePathTB.Text = Settings1.Default.winsSavePath + Settings1.Default.winsSaveFile;
+            feedbackSavePathTB.Text = Settings1.Default.feedbackFolder;
         }
-
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
@@ -86,6 +93,45 @@ namespace TaskMaster
             HelperTags.StopTimer();
             HelperTags.Schedule_Timer();
             this.Close();
+        }
+
+        private void winsLocationChange_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            if (Settings1.Default.winsSavePath.Length > 0) 
+            { 
+                dlg.FileName = Settings1.Default.winsSaveFile;
+                dlg.InitialDirectory = Settings1.Default.winsSavePath;
+            }
+            else { dlg.FileName = "Personal Wins"; }
+            dlg.DefaultExt = ".txt";
+            dlg.Filter = "Text documents (.txt)|*.txt";
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                string fileName = dlg.SafeFileName;
+                string fullName = dlg.FileName;
+                winsSavePathTB.Text = fullName;
+                int fileNameLen = fileName.Length;
+                Settings1.Default.winsSaveFile = fileName;
+                Settings1.Default.winsSavePath = fullName.Remove(fullName.Length - fileNameLen, fileNameLen);
+                Settings1.Default.Save();
+            }
+            saveButton.Focus();
+        }
+
+        private void feedbackLocationChange_Click(object sender, RoutedEventArgs e)
+        {
+            OutlookFolder window = new OutlookFolder();
+            window.Closed += new EventHandler(window_Closed);
+            window.Show();
+            saveButton.Focus();
+        }
+        void window_Closed(object sender, EventArgs e)
+        {
+            LoadSettings();
         }
     }
 }
