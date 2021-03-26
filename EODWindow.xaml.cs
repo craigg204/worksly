@@ -32,6 +32,7 @@ namespace TaskMaster
         public static RoutedCommand noClick = new RoutedCommand();
         public EODWindow()
         {
+            
             InitializeComponent();
 
             CommandBinding cb = new CommandBinding(taskSubmit, SubmitExecuted, SubmitCanExecute);
@@ -120,14 +121,19 @@ namespace TaskMaster
         {
             string winsText = selfWins.Text;
             string feedbackText = feedback.Text;
-            LogFeedback(feedbackText);
             SaveWins(winsText);
+            LogFeedback(feedbackText);
             selfWins.Text = null;
             feedback.Text = null;
             this.Close();
         }
         private void LogFeedback(string inputStr)
         {
+            while (Settings1.Default.feedbackFolder.Length == 0)
+            {
+                OutlookFolder window = new OutlookFolder();
+                window.ShowDialog();
+            }
             string[] feedbackArry = inputStr.Split('\n');
             string feedbackSubject;
             foreach (string i in feedbackArry)
@@ -140,7 +146,12 @@ namespace TaskMaster
         {
             inputStr = inputStr.Replace("\r", "");
             string[] inputArry = inputStr.Split('\n');
-            string FileName = "C:\\Users\\cgutman\\OneDrive - epic.com\\Documents\\DailyWins.txt";
+            string FileName = Settings1.Default.winsSavePath + Settings1.Default.winsSaveFile;
+            if (FileName.Length == 0)
+            {
+                Settings.ChangeWinsLocation();
+                FileName = Settings1.Default.winsSavePath + Settings1.Default.winsSaveFile;
+            }
             StreamWriter sw = File.AppendText(FileName);
             foreach (string i in inputArry)
             {

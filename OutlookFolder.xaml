@@ -80,7 +80,8 @@
         </Border>
         <ListBox x:Name="foldersListBox" Background="{x:Null}" Height="366" Width="320"
                  Canvas.Left="15" Canvas.Top="41" BorderBrush="{x:Null}" Foreground="White"
-                 ScrollViewer.HorizontalScrollBarVisibility="Hidden" FontFamily="Courier New">
+                 ScrollViewer.HorizontalScrollBarVisibility="Hidden" FontFamily="Courier New"
+                 SelectionChanged="foldersListBox_Selected" >
             <ListBox.Resources>
                 <Style TargetType="{x:Type ScrollBar}">
                     <Setter Property="Background" Value="#85505050"/>

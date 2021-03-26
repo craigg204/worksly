@@ -44,7 +44,14 @@ namespace TaskMaster
                 }
                 else
                 {
-                    scheduledDay = today.AddDays(1); //want scheduled for tomorrow
+                    if (nowDOW == DayOfWeek.Friday)
+                    {
+                        scheduledDay = today.AddDays(3); //want scheduled for Monday
+                    }
+                    else
+                    {
+                        scheduledDay = today.AddDays(1); //want scheduled for tomorrow
+                    }
                 }
             }
             scheduledTime = scheduledDay.Add(settingsTime);
@@ -65,14 +72,13 @@ namespace TaskMaster
         private static void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             StopTimer();
-
+            Schedule_Timer();
             Application.Current.Dispatcher.Invoke((Action)delegate
             {
+                if (Application.Current.Windows.OfType<EODWindow>().Any()) { return; }
                 EODWindow window1 = new EODWindow();
                 window1.Show();
             });
-            
-            Schedule_Timer();
         }
         public static void StopTimer()
         {
@@ -91,7 +97,7 @@ namespace TaskMaster
             tsk.Save();
             if (feedbackTask == true)
             {
-                Outlook.MAPIFolder folder = GetFolder(Settings1.Default.feedbackFolder); //(Outlook.MAPIFolder)app.Session.Folders["\\\\cgutman@epic.com\\Tasks\\Feedback to Give"];
+                Outlook.MAPIFolder folder = GetFolder(Settings1.Default.feedbackFolder);
                 tsk.Move(folder);
             }
         }
@@ -125,5 +131,6 @@ namespace TaskMaster
             }
             catch { return null; }
         }
+
     }
 }

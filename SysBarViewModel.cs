@@ -64,7 +64,8 @@ namespace TaskMaster
                 return new DelegateCommand
                 {
                     CommandAction = () => 
-                    { 
+                    {
+                        if (Application.Current.Windows.OfType<EODWindow>().Any()) { return; }
                         if (Application.Current.MainWindow != null) { Application.Current.MainWindow.Hide(); }
                         EODWindow window1 = new EODWindow();
                         window1.Show();
@@ -84,6 +85,7 @@ namespace TaskMaster
                 {
                     CommandAction = () =>
                     {
+                        if (Application.Current.Windows.OfType<Settings>().Any()) { return; }
                         Settings window1 = new Settings();
                         window1.Show();
                     }
@@ -100,10 +102,6 @@ namespace TaskMaster
             {
                 return new DelegateCommand { CommandAction = () => Application.Current.Shutdown() };
             }
-        }
-        public bool EODMode()
-        {
-            return Settings1.Default.EODHardMode;
         }
     }
 

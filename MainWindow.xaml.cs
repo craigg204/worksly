@@ -166,5 +166,6 @@ namespace TaskMaster
             taskEntry.Text = null;
             Application.Current.MainWindow.Hide();
         }
+
     }
 }

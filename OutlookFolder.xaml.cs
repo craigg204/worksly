@@ -47,6 +47,7 @@ namespace TaskMaster
             KeyGesture kg1 = new KeyGesture(Key.Escape);
             InputBinding ib1 = new InputBinding(closeApp, kg1);
             this.InputBindings.Add(ib1);
+            foldersListBox.SelectedIndex = 0;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -112,6 +113,11 @@ namespace TaskMaster
         {
             e.Handled = true;
             this.Close();
+        }
+
+        private void foldersListBox_Selected(object sender, RoutedEventArgs e)
+        {
+            submitButton.Focus();
         }
     }
     class FolderListing
