@@ -56,7 +56,7 @@ namespace TaskMaster
 
         private void LoadSettings()
         {
-            DateTime nextTimer = HelperTags.NextTimerEvent();
+            DateTime nextTimer = HelperTags.NextTimerEvent(App.timer);
             EODHardMode_Box.IsChecked = EODHardMode;
             EODscheduledTime.Value = today.Add(scheduledTime);
             nextScheduledTimer.Text = timerMessage + nextTimer.ToString("dd.MM.yyyy HH:mm");
@@ -90,8 +90,8 @@ namespace TaskMaster
             Settings1.Default.EODHardMode = (bool)EODHardMode_Box.IsChecked;
             Settings1.Default.EODTime = (TimeSpan)(EODscheduledTime.Value - today);
             Settings1.Default.Save();
-            HelperTags.StopTimer();
-            HelperTags.Schedule_Timer();
+            HelperTags.StopTimer(App.timer);
+            HelperTags.Schedule_Timer(App.timer);
             this.Close();
         }
 

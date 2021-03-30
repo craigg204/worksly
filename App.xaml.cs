@@ -13,6 +13,7 @@ using System.Windows.Input;
 using Hardcodet.Wpf.TaskbarNotification;
 using System.Windows.Interop;
 using System.Runtime.InteropServices;
+using System.Timers;
 
 namespace TaskMaster
 {
@@ -23,19 +24,21 @@ namespace TaskMaster
     {
 
         private Hardcodet.Wpf.TaskbarNotification.TaskbarIcon tb;
+        public static Timer timer = new Timer();
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             //initialize NotifyIcon
             tb = (Hardcodet.Wpf.TaskbarNotification.TaskbarIcon)FindResource("MyTaskBarIcon");
-            HelperTags.Schedule_Timer();
+            timer.Elapsed += new ElapsedEventHandler(HelperTags.Timer_Elapsed);
+            HelperTags.Schedule_Timer(timer);
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
             tb.Dispose(); //the icon would clean up automatically, but this is cleaner
-            HelperTags.StopTimer();
+            timer.Dispose();
             base.OnExit(e);
         }
 

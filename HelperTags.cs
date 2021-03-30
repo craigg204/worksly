@@ -15,9 +15,8 @@ namespace TaskMaster
 {
     class HelperTags
     {
-        static Timer timer;
 
-        public static void Schedule_Timer()
+        public static void Schedule_Timer(Timer timer)
         {
             TimeSpan settingsTime = Settings1.Default.EODTime;  //cache user setting
             DateTime now = DateTime.Now;
@@ -58,8 +57,7 @@ namespace TaskMaster
 
             //Now setup the timer
             double tickTime = (double)(scheduledTime-DateTime.Now).TotalMilliseconds;
-            timer = new Timer(tickTime);
-            timer.Elapsed += new ElapsedEventHandler(Timer_Elapsed);
+            timer.Interval = tickTime;
             timer.Start();
 #if DEBUG
             Console.WriteLine("### Timer Started ### \n");
@@ -69,10 +67,10 @@ namespace TaskMaster
 
         }
 
-        private static void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        public static void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            StopTimer();
-            Schedule_Timer();
+            StopTimer(App.timer);
+            Schedule_Timer(App.timer);
             Application.Current.Dispatcher.Invoke((Action)delegate
             {
                 if (Application.Current.Windows.OfType<EODWindow>().Any()) { return; }
@@ -80,12 +78,12 @@ namespace TaskMaster
                 window1.Show();
             });
         }
-        public static void StopTimer()
+        public static void StopTimer(Timer timer)
         {
-            timer.Dispose();
+            timer.Stop();
         }
 
-        public static DateTime NextTimerEvent()
+        public static DateTime NextTimerEvent(Timer timer)
         {
             return (DateTime.Now.AddMilliseconds(timer.Interval));
         }
