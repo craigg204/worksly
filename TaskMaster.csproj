@@ -111,6 +111,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="HelperTags.cs" />
+    <Compile Include="TimerPlus.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Page Include="EODWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

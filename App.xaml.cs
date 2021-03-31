@@ -24,7 +24,7 @@ namespace TaskMaster
     {
 
         private Hardcodet.Wpf.TaskbarNotification.TaskbarIcon tb;
-        public static Timer timer = new Timer();
+        public static TimerPlus timer = new TimerPlus();
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -32,6 +32,7 @@ namespace TaskMaster
             //initialize NotifyIcon
             tb = (Hardcodet.Wpf.TaskbarNotification.TaskbarIcon)FindResource("MyTaskBarIcon");
             timer.Elapsed += new ElapsedEventHandler(HelperTags.Timer_Elapsed);
+            timer.AutoReset = false;
             HelperTags.Schedule_Timer(timer);
         }
 

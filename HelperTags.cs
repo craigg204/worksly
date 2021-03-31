@@ -16,7 +16,7 @@ namespace TaskMaster
     class HelperTags
     {
 
-        public static void Schedule_Timer(Timer timer)
+        public static void Schedule_Timer(TimerPlus timer)
         {
             TimeSpan settingsTime = Settings1.Default.EODTime;  //cache user setting
             DateTime now = DateTime.Now;
@@ -78,14 +78,14 @@ namespace TaskMaster
                 window1.Show();
             });
         }
-        public static void StopTimer(Timer timer)
+        public static void StopTimer(TimerPlus timer)
         {
             timer.Stop();
         }
 
-        public static DateTime NextTimerEvent(Timer timer)
+        public static DateTime NextTimerEvent(TimerPlus timer)
         {
-            return (DateTime.Now.AddMilliseconds(timer.Interval));
+            return (DateTime.Now.AddMilliseconds(timer.TimeLeft));
         }
         public static void CreateTask(string subject, bool feedbackTask)
         {
