@@ -129,6 +129,7 @@ namespace TaskMaster
         }
         private void LogFeedback(string inputStr)
         {
+            if (inputStr.Length == 0) { return; }
             while (Settings1.Default.feedbackFolder.Length == 0)
             {
                 OutlookFolder window = new OutlookFolder();
