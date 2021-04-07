@@ -232,5 +232,8 @@
     <Resource Include="Icons\endArrow-White.png" />
     <Resource Include="Icons\lineArrow-White.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\FeedbackBubble_16x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

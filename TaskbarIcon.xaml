@@ -59,9 +59,16 @@
     <Style TargetType="TextBox">
         <Style.Resources>
             <Style TargetType="{x:Type Border}">
-                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="CornerRadius" Value="2" />
             </Style>
         </Style.Resources>
+    </Style>
+    <Style TargetType="{x:Type CheckBox}">
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="#FF383838"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     <Style TargetType="Button" x:Key="submitBtn">
         <Setter Property="Background">

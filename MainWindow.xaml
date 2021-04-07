@@ -40,14 +40,17 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
+        <Rectangle x:Name="tbBackground" Height="60" Canvas.Left="35" Canvas.Top="40" Width="430">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="White" Opacity="0.1"/>
+            </Rectangle.Fill>
+        </Rectangle>
         <TextBox x:Name="taskEntry" Height="60" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="40" 
                  Width="430" Foreground="White" SelectionBrush="#FF575757" Padding="4" 
                  SpellCheck.IsEnabled="True" BorderThickness="0" CaretBrush="White" FontSize="16" 
-                 MaxLines="2" MinLines="1">
-            <TextBox.Background>
-                <SolidColorBrush Color="White" Opacity="0.1"/>
-            </TextBox.Background>
-        </TextBox>
+                 MaxLines="2" MinLines="1" Background="{x:Null}" />
+        <Image x:Name="fbIcon" Canvas.Left="40" Canvas.Top="47" Width="16" Height="16"
+               Source="/Icons/FeedbackBubble_16x.png" Visibility="Hidden" Opacity="0.6"/>
         <Button x:Name="submitButton" Style="{StaticResource submitBtn}" Content="Submit" Canvas.Left="212"
                 Canvas.Top="115" Width="75" Height="27"/>
     </Canvas>

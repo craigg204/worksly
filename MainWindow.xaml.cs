@@ -67,10 +67,35 @@ namespace TaskMaster
             InputBinding ib1 = new InputBinding(closeApp, kg1);
             this.InputBindings.Add(ib1);
 
+            this.PreviewKeyDown += MWPreviewKeyDown;
 
             taskEntry.Focus();
         }
 
+        private void MWPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            string fbTag = Settings1.Default.feedbackTag;
+            string fbTagFront = fbTag.Remove(fbTag.Length - 1, 1);
+            string fbTagLastChar = fbTag.Substring(fbTag.Length - 1).ToUpper();
+
+            if ((taskEntry.IsFocused == true) & (Settings1.Default.fbModeRequireTab == false) & (taskEntry.Text == fbTagFront) & (e.Key.ToString() == fbTagLastChar))
+            {
+                EnableFBMode();
+                e.Handled = true;
+                return;
+            }
+            if ((taskEntry.IsFocused == true) & (e.Key == Key.Tab) & (taskEntry.Text == Settings1.Default.feedbackTag))
+            {
+                EnableFBMode();
+                e.Handled = true;
+            }
+            if ((taskEntry.Text.Length == 0) & (fbIcon.Visibility==Visibility.Visible) & (e.Key == Key.Escape))
+            {
+                DisableFBMode();
+                e.Handled = true;
+            }
+        }
+        
         private IntPtr _windowHandle;
         private HwndSource _source;
         private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
@@ -147,11 +172,12 @@ namespace TaskMaster
                 window1.Show();
                 return;
             }
-            if (taskEntry.Text.Length != 0) { HelperTags.CreateTask(taskText, false); }
+            if (taskEntry.Text.Length != 0) { HelperTags.CreateTask(taskText, (fbIcon.Visibility==Visibility.Visible)); } //if in feedback mode submit as a feedback task
             //MessageBox.Show(taskText);
             submitButton.Style = (Style)Application.Current.Resources["submitBtn"];
             e.Handled = true;
             taskEntry.Text = null;
+            DisableFBMode();
             Application.Current.MainWindow.Hide();
         }
 
@@ -164,9 +190,24 @@ namespace TaskMaster
         {
             e.Handled = true;
             taskEntry.Text = null;
+            DisableFBMode();
             Application.Current.MainWindow.Hide();
             
         }
-        
+
+        private void EnableFBMode()
+        {
+            fbIcon.Visibility = Visibility.Visible;
+            taskEntry.Width = 410;
+            Canvas.SetLeft(taskEntry, (double)55);
+            taskEntry.Text = null;
+        }
+
+        private void DisableFBMode()
+        {
+            fbIcon.Visibility = Visibility.Hidden;
+            taskEntry.Width = 430;
+            Canvas.SetLeft(taskEntry, (double)35);
+        }
     }
 }

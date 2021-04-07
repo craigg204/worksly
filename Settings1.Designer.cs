@@ -82,5 +82,53 @@ namespace TaskMaster {
                 this["feedbackFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(";fb")]
+        public string feedbackTag {
+            get {
+                return ((string)(this["feedbackTag"]));
+            }
+            set {
+                this["feedbackTag"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool fbModeRequireTab {
+            get {
+                return ((bool)(this["fbModeRequireTab"]));
+            }
+            set {
+                this["fbModeRequireTab"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool enableEOD {
+            get {
+                return ((bool)(this["enableEOD"]));
+            }
+            set {
+                this["enableEOD"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool enableFBTasks {
+            get {
+                return ((bool)(this["enableFBTasks"]));
+            }
+            set {
+                this["enableFBTasks"] = value;
+            }
+        }
     }
 }

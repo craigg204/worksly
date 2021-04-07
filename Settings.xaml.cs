@@ -30,6 +30,7 @@ namespace TaskMaster
         private readonly bool EODHardMode = Settings1.Default.EODHardMode;
         private readonly DateTime today = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
         const string timerMessage = "Next scheduled end of day pop-up: ";
+        SolidColorBrush disabledText = new SolidColorBrush(Color.FromRgb(112, 112, 112));
 
         public Settings()
         {
@@ -56,12 +57,25 @@ namespace TaskMaster
 
         private void LoadSettings()
         {
-            DateTime nextTimer = HelperTags.NextTimerEvent(App.timer);
+            string nextTimerText;
+            if ( App.timer.Enabled == true)
+            {
+                DateTime nextTimer = HelperTags.NextTimerEvent(App.timer);
+                nextTimerText = nextTimer.ToString("dd.MM.yyyy HH:mm");
+            }
+            else { nextTimerText = "N/A"; }
+            
             EODHardMode_Box.IsChecked = EODHardMode;
             EODscheduledTime.Value = today.Add(scheduledTime);
-            nextScheduledTimer.Text = timerMessage + nextTimer.ToString("dd.MM.yyyy HH:mm");
+            nextScheduledTimer.Text = timerMessage + nextTimerText;
             winsSavePathTB.Text = Settings1.Default.winsSavePath + Settings1.Default.winsSaveFile;
             feedbackSavePathTB.Text = Settings1.Default.feedbackFolder;
+            TvFToggle.IsChecked = Settings1.Default.enableFBTasks;
+            fbToggleString.Text = Settings1.Default.feedbackTag;
+            fbTABCheck.IsChecked = Settings1.Default.fbModeRequireTab;
+            enableEODCheck.IsChecked = Settings1.Default.enableEOD;
+            TvFToggleChecked();
+            EnableEODClicked();            
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -89,6 +103,10 @@ namespace TaskMaster
             e.Handled = true;
             Settings1.Default.EODHardMode = (bool)EODHardMode_Box.IsChecked;
             Settings1.Default.EODTime = (TimeSpan)(EODscheduledTime.Value - today);
+            Settings1.Default.enableEOD = (bool)enableEODCheck.IsChecked;
+            Settings1.Default.enableFBTasks = (bool)TvFToggle.IsChecked;
+            if (fbToggleString.Text.Length > 0) { Settings1.Default.feedbackTag = fbToggleString.Text; }
+            Settings1.Default.fbModeRequireTab = (bool)fbTABCheck.IsChecked;
             Settings1.Default.Save();
             HelperTags.StopTimer(App.timer);
             HelperTags.Schedule_Timer(App.timer);
@@ -136,6 +154,72 @@ namespace TaskMaster
                 Settings1.Default.winsSaveFile = fileName;
                 Settings1.Default.winsSavePath = fullName.Remove(fullName.Length - fileNameLen, fileNameLen);
                 Settings1.Default.Save();
+            }
+        }
+
+        private void TvFToggle_Click(object sender, RoutedEventArgs e)
+        {
+            TvFToggleChecked();
+        }
+        private void TvFToggleChecked()
+        {
+            if (TvFToggle.IsChecked == true)
+            {
+                toggleSetText.Foreground = Brushes.White;
+                fbToggleString.IsEnabled = true;
+                fbTABCheckLabel.Foreground = Brushes.White;
+                fbTABCheck.IsEnabled = true;
+                fbSaveLabel.Foreground = Brushes.White;
+                feedbackLocationChange.IsEnabled = true;
+            }
+            else
+            {
+                toggleSetText.Foreground = disabledText;
+                fbToggleString.IsEnabled = false;
+                fbToggleString.Text = Settings1.Default.feedbackTag;
+                fbTABCheckLabel.Foreground = disabledText;
+                fbTABCheck.IsEnabled = false;
+                fbTABCheck.IsChecked = Settings1.Default.fbModeRequireTab;
+                if (enableEODCheck.IsChecked == false)
+                {
+                    feedbackLocationChange.IsEnabled = false;
+                    fbSaveLabel.Foreground = disabledText;
+                }
+
+            }
+        }
+        private void EnableEODCheck_Click(object sender, RoutedEventArgs e)
+        {
+            EnableEODClicked();
+        }
+        private void EnableEODClicked()
+        {
+            if (enableEODCheck.IsChecked == true)
+            {
+                hardmodeLabel.Foreground = Brushes.White;
+                EODHardMode_Box.IsEnabled = true;
+                EODTimeLabel.Foreground = Brushes.White;
+                EODscheduledTime.IsEnabled = true;
+                WinsLabel.Foreground = Brushes.White;
+                winsLocationChange.IsEnabled = true;
+                fbSaveLabel.Foreground = Brushes.White;
+                feedbackLocationChange.IsEnabled = true;
+            }
+            else
+            {
+                hardmodeLabel.Foreground = disabledText;
+                EODHardMode_Box.IsEnabled = false;
+                EODHardMode_Box.IsChecked = Settings1.Default.EODHardMode;
+                EODTimeLabel.Foreground = disabledText;
+                EODscheduledTime.IsEnabled = false;
+                WinsLabel.Foreground = disabledText;
+                winsLocationChange.IsEnabled = false;
+                if (TvFToggle.IsChecked == false)
+                {
+                    feedbackLocationChange.IsEnabled = false;
+                    fbSaveLabel.Foreground = disabledText;
+                }
+
             }
         }
     }

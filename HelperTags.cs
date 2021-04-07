@@ -18,6 +18,7 @@ namespace TaskMaster
 
         public static void Schedule_Timer(TimerPlus timer)
         {
+            if (Settings1.Default.enableEOD == false) { return; }
             TimeSpan settingsTime = Settings1.Default.EODTime;  //cache user setting
             DateTime now = DateTime.Now;
             DayOfWeek nowDOW = now.DayOfWeek; //current day of week
@@ -54,7 +55,7 @@ namespace TaskMaster
                 }
             }
             scheduledTime = scheduledDay.Add(settingsTime);
-            scheduledTime = scheduledTime.AddSeconds(25); //adding 25 seconds to the scheduled time as a buffer to avoid rounding issues
+            scheduledTime = scheduledTime.AddSeconds(25); //adding 25 seconds to the scheduled time as a buffer to avoid display rounding issues
 
             //Now setup the timer
             double tickTime = (double)(scheduledTime-DateTime.Now).TotalMilliseconds;
@@ -86,7 +87,7 @@ namespace TaskMaster
 
         public static DateTime NextTimerEvent(TimerPlus timer)
         {
-            return (DateTime.Now.AddMilliseconds(timer.TimeLeft));
+                return (DateTime.Now.AddMilliseconds(timer.TimeLeft));
         }
         public static void CreateTask(string subject, bool feedbackTask)
         {
