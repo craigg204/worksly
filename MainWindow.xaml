@@ -48,7 +48,7 @@
         <TextBox x:Name="taskEntry" Height="60" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="40" 
                  Width="430" Foreground="White" SelectionBrush="#FF575757" Padding="4" 
                  SpellCheck.IsEnabled="True" BorderThickness="0" CaretBrush="White" FontSize="16" 
-                 MaxLines="2" MinLines="1" Background="{x:Null}" />
+                 MaxLines="2" MinLines="1" Background="{x:Null}" TextChanged="taskEntry_TextChanged"/>
         <Image x:Name="fbIcon" Canvas.Left="40" Canvas.Top="47" Width="16" Height="16"
                Source="/Icons/FeedbackBubble_16x.png" Visibility="Hidden" Opacity="0.6"/>
         <Button x:Name="submitButton" Style="{StaticResource submitBtn}" Content="Submit" Canvas.Left="212"

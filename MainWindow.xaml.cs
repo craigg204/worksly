@@ -74,16 +74,7 @@ namespace TaskMaster
 
         private void MWPreviewKeyDown(object sender, KeyEventArgs e)
         {
-            string fbTag = Settings1.Default.feedbackTag;
-            string fbTagFront = fbTag.Remove(fbTag.Length - 1, 1);
-            string fbTagLastChar = fbTag.Substring(fbTag.Length - 1).ToUpper();
-
-            if ((taskEntry.IsFocused == true) & (Settings1.Default.fbModeRequireTab == false) & (taskEntry.Text == fbTagFront) & (e.Key.ToString() == fbTagLastChar))
-            {
-                EnableFBMode();
-                e.Handled = true;
-                return;
-            }
+            
             if ((taskEntry.IsFocused == true) & (e.Key == Key.Tab) & (taskEntry.Text == Settings1.Default.feedbackTag))
             {
                 EnableFBMode();
@@ -208,6 +199,16 @@ namespace TaskMaster
             fbIcon.Visibility = Visibility.Hidden;
             taskEntry.Width = 430;
             Canvas.SetLeft(taskEntry, (double)35);
+        }
+
+        private void taskEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if ((Settings1.Default.fbModeRequireTab == false) & (taskEntry.Text == Settings1.Default.feedbackTag) )
+            {
+                EnableFBMode();
+                e.Handled = true;
+                return;
+            }
         }
     }
 }
