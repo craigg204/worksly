@@ -54,6 +54,7 @@ namespace TaskMaster
                 }
             }
             scheduledTime = scheduledDay.Add(settingsTime);
+            scheduledTime = scheduledTime.AddSeconds(25); //adding 25 seconds to the scheduled time as a buffer to avoid rounding issues
 
             //Now setup the timer
             double tickTime = (double)(scheduledTime-DateTime.Now).TotalMilliseconds;
