@@ -4,7 +4,7 @@
                     xmlns:tb="http://www.hardcodet.net/taskbar">
     <tb:TaskbarIcon x:Key="MyTaskBarIcon"
                     IconSource="/Icons/TM_Icon.ico"
-                    ToolTipText="TaskMaster"
+                    ToolTipText="TaskMaster Testing"
                     LeftClickCommand="{Binding ShowWindowCommand}"
                     DoubleClickCommand="{Binding HideWindowCommand}">
         <tb:TaskbarIcon.DataContext>
@@ -25,6 +25,11 @@
                 <MenuItem Name="EODMode" Header="Settings" Command="{Binding SettingsWindow}">
                     <MenuItem.Icon>
                         <Image Source="/Icons/Settings.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="updateMenu" Header="Check for Updates" Command="{Binding CheckForUpdateCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/Icons/CloudDownload_16x.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator/>

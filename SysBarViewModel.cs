@@ -39,6 +39,22 @@ namespace TaskMaster
             }
         }
 
+        public ICommand CheckForUpdateCommand
+        {
+            get
+            {
+                return new DelegateCommand
+                {
+                    //CanExecuteFunc = () => Application.Current.MainWindow == null,
+                    CommandAction = () =>
+                    {
+                        //Application.Current.MainWindow = new MainWindow();
+                        HelperTags.InstallUpdateSyncWithInfo();
+                    }
+                };
+            }
+        }
+
         /// <summary>
         /// Hides the main window. This command is only enabled if a window is open.
         /// </summary>
