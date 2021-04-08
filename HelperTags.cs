@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
+using Forms = System.Windows.Forms;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace TaskMaster
@@ -190,8 +191,8 @@ namespace TaskMaster
                         {
                             ad.Update();
                             MessageBox.Show("The application has been upgraded, and will now restart.");
-                            System.Windows.Forms.Application.Restart();
-                            System.Windows.Application.Current.Shutdown();
+                            Forms.Application.Restart();
+                            Application.Current.Shutdown();
                         }
                         catch (DeploymentDownloadException dde)
                         {
