@@ -4,7 +4,7 @@
                     xmlns:tb="http://www.hardcodet.net/taskbar">
     <tb:TaskbarIcon x:Key="MyTaskBarIcon"
                     IconSource="/Icons/TM_Icon.ico"
-                    ToolTipText="TaskMaster Testing"
+                    ToolTipText="TaskMaster"
                     LeftClickCommand="{Binding ShowWindowCommand}"
                     DoubleClickCommand="{Binding HideWindowCommand}">
         <tb:TaskbarIcon.DataContext>

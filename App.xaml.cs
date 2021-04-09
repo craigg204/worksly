@@ -31,6 +31,9 @@ namespace TaskMaster
             base.OnStartup(e);
             //initialize NotifyIcon
             tb = (Hardcodet.Wpf.TaskbarNotification.TaskbarIcon)FindResource("MyTaskBarIcon");
+#if DEBUG
+            tb.ToolTipText = "TaskMaster Testing";
+#endif
             timer.Elapsed += new ElapsedEventHandler(HelperTags.Timer_Elapsed);
             timer.AutoReset = false;
             HelperTags.Schedule_Timer(timer);
