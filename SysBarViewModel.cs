@@ -101,8 +101,14 @@ namespace TaskMaster
                 {
                     CommandAction = () =>
                     {
-                        if (Application.Current.Windows.OfType<Settings>().Any()) { return; }
-                        Settings window1 = new Settings();
+                        Settings window1;
+                        if (Application.Current.Windows.OfType<Settings>().Any())
+                        {
+                            window1 = Application.Current.Windows.OfType<Settings>().First();
+                            window1.Show();
+                            window1.Activate();
+                        }
+                        window1 = new Settings();
                         window1.Show();
                     }
                 };

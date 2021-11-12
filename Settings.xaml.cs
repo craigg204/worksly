@@ -72,6 +72,7 @@ namespace TaskMaster
             feedbackSavePathTB.Text = Settings1.Default.feedbackFolder;
             TvFToggle.IsChecked = Settings1.Default.enableFBTasks;
             fbToggleString.Text = Settings1.Default.feedbackTag;
+            fuToggleString.Text = Settings1.Default.followUpTag;
             fbTABCheck.IsChecked = Settings1.Default.fbModeRequireTab;
             enableEODCheck.IsChecked = Settings1.Default.enableEOD;
             TvFToggleChecked();
@@ -106,6 +107,7 @@ namespace TaskMaster
             Settings1.Default.enableEOD = (bool)enableEODCheck.IsChecked;
             Settings1.Default.enableFBTasks = (bool)TvFToggle.IsChecked;
             if (fbToggleString.Text.Length > 0) { Settings1.Default.feedbackTag = fbToggleString.Text; }
+            if (fuToggleString.Text.Length > 0) { Settings1.Default.followUpTag = fuToggleString.Text; }
             Settings1.Default.fbModeRequireTab = (bool)fbTABCheck.IsChecked;
             Settings1.Default.Save();
             HelperTags.StopTimer(App.timer);
@@ -167,16 +169,21 @@ namespace TaskMaster
             {
                 toggleSetText.Foreground = Brushes.White;
                 fbToggleString.IsEnabled = true;
+                fuToggleString.IsEnabled = true;
                 fbTABCheckLabel.Foreground = Brushes.White;
                 fbTABCheck.IsEnabled = true;
                 fbSaveLabel.Foreground = Brushes.White;
+                toggleFUSetText.Foreground = Brushes.White;
                 feedbackLocationChange.IsEnabled = true;
             }
             else
             {
                 toggleSetText.Foreground = disabledText;
+                toggleFUSetText.Foreground = disabledText;
                 fbToggleString.IsEnabled = false;
+                fuToggleString.IsEnabled = false;
                 fbToggleString.Text = Settings1.Default.feedbackTag;
+                fuToggleString.Text = Settings1.Default.followUpTag;
                 fbTABCheckLabel.Foreground = disabledText;
                 fbTABCheck.IsEnabled = false;
                 fbTABCheck.IsChecked = Settings1.Default.fbModeRequireTab;

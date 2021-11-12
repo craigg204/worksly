@@ -91,7 +91,7 @@ namespace TaskMaster
         {
                 return (DateTime.Now.AddMilliseconds(timer.TimeLeft));
         }
-        public static void CreateTask(string subject, bool feedbackTask)
+        public static void CreateTask(string subject, bool feedbackTask, bool followupTask)
         {
             Outlook.ApplicationClass app = new Outlook.ApplicationClass();
             Outlook.TaskItem tsk = (Outlook.TaskItem)app.CreateItem(Outlook.OlItemType.olTaskItem);
@@ -100,6 +100,11 @@ namespace TaskMaster
             if (feedbackTask == true)
             {
                 Outlook.MAPIFolder folder = GetFolder(Settings1.Default.feedbackFolder);
+                tsk.Move(folder);
+            }
+            if (followupTask == true)
+            {
+                Outlook.MAPIFolder folder = GetFolder(Settings1.Default.fuFolder);
                 tsk.Move(folder);
             }
         }

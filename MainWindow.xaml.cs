@@ -46,6 +46,8 @@ namespace TaskMaster
         //Space Bar:
         private const uint VK_SPACE = 0x20;
 
+        private bool followUpTask = false;
+
         public MainWindow()
         {
 
@@ -80,9 +82,22 @@ namespace TaskMaster
                 EnableFBMode();
                 e.Handled = true;
             }
+            if ((taskEntry.IsFocused == true) & (e.Key == Key.Tab) & (taskEntry.Text == Settings1.Default.followUpTag))
+            {
+                taskEntry.Text = "F/U: ";
+                taskEntry.CaretIndex = 5;
+                followUpTask = true;
+                e.Handled = true;
+            }
             if ((taskEntry.Text.Length == 0) & (fbIcon.Visibility==Visibility.Visible) & (e.Key == Key.Escape))
             {
                 DisableFBMode();
+                e.Handled = true;
+            }
+            if ((taskEntry.Text == "F/U: ") && (e.Key == Key.Escape))
+            {
+                taskEntry.Text = "";
+                followUpTask = false;
                 e.Handled = true;
             }
         }
@@ -163,7 +178,7 @@ namespace TaskMaster
                 window1.Show();
                 return;
             }
-            if (taskEntry.Text.Length != 0) { HelperTags.CreateTask(taskText, (fbIcon.Visibility==Visibility.Visible)); } //if in feedback mode submit as a feedback task
+            if (taskEntry.Text.Length != 0) { HelperTags.CreateTask(taskText, (fbIcon.Visibility==Visibility.Visible), followUpTask); } //if in feedback mode submit as a feedback task
             //MessageBox.Show(taskText);
             submitButton.Style = (Style)Application.Current.Resources["submitBtn"];
             e.Handled = true;

@@ -140,7 +140,7 @@ namespace TaskMaster
             foreach (string i in feedbackArry)
             {
                 feedbackSubject = i + " - " + DateTime.Now.ToString("dd/MM/yyy");
-                HelperTags.CreateTask(feedbackSubject,true);
+                HelperTags.CreateTask(feedbackSubject,true,false);
             }
         }
         private void SaveWins(string inputStr)

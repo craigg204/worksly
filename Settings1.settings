@@ -29,5 +29,11 @@
     <Setting Name="enableFBTasks" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="followUpTag" Type="System.String" Scope="User">
+      <Value Profile="(Default)">;fu</Value>
+    </Setting>
+    <Setting Name="fuFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\cgutman@epic.com\Tasks\Follow-Ups</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
