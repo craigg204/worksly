@@ -10,9 +10,9 @@
         WindowStyle="None" ShowInTaskbar="False" Topmost="True" 
         WindowStartupLocation="CenterScreen" AllowsTransparency="True"
         Background="Transparent" MouseLeftButtonDown="Window_MouseLeftButtonDown" Visibility="Visible">
-    <Canvas Width="500" Height="152" Name="RootLayout">
+    <Canvas Width="500" Height="153" Name="RootLayout">
         <Rectangle Stroke="Black" StrokeThickness="1" Name="UIPath"
-                   Width="500" Height="152" RadiusX="35" RadiusY="35">
+                   Width="500" Height="153" RadiusX="35" RadiusY="35">
             <Rectangle.Fill>
                 <RadialGradientBrush>
                     <GradientStop Color="#FF0F0F0F" Offset="1"/>
@@ -48,7 +48,8 @@
         <TextBox x:Name="taskEntry" Height="60" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="40" 
                  Width="430" Foreground="White" SelectionBrush="#FF575757" Padding="4" 
                  SpellCheck.IsEnabled="True" BorderThickness="0" CaretBrush="White" FontSize="16" 
-                 MaxLines="2" MinLines="1" Background="{x:Null}" TextChanged="taskEntry_TextChanged"/>
+                 MaxLines="2" MinLines="1" Background="{x:Null}" TextChanged="taskEntry_TextChanged"
+                 KeyDown="taskEntry_KeyDown" KeyUp="taskEntry_KeyUp"/>
         <Image x:Name="fbIcon" Canvas.Left="40" Canvas.Top="47" Width="16" Height="16"
                Source="/Icons/FeedbackBubble_16x.png" Visibility="Hidden" Opacity="0.6"/>
         <Button x:Name="submitButton" Style="{StaticResource submitBtn}" Content="Submit" Canvas.Left="212"

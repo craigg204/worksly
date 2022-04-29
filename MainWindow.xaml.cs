@@ -19,16 +19,22 @@ using System.Windows.Shapes;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Windows.Interop;
 using System.Runtime.InteropServices;
+using System.DirectoryServices.AccountManagement;
+using System.DirectoryServices;
+using System.Timers;
 
 namespace TaskMaster
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
     public partial class MainWindow : Window
     {
         public static RoutedCommand taskSubmit = new RoutedCommand();
         public static RoutedCommand closeApp = new RoutedCommand();
+        public static RoutedCommand lookup = new RoutedCommand();
         [DllImportAttribute("user32.dll", SetLastError = true)]
         private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
 
@@ -47,11 +53,20 @@ namespace TaskMaster
         private const uint VK_SPACE = 0x20;
 
         private bool followUpTask = false;
+        private bool lookupMode = false;
+        private bool userFound = false;
+
+        Timer timer = new Timer(500);
+        private string searchText = "";
 
         public MainWindow()
         {
 
             InitializeComponent();
+
+            timer.AutoReset = false;
+            timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
+
 
             CommandBinding cb = new CommandBinding(taskSubmit, SubmitExecuted, SubmitCanExecute);
             this.CommandBindings.Add(cb);
@@ -76,8 +91,15 @@ namespace TaskMaster
 
         private void MWPreviewKeyDown(object sender, KeyEventArgs e)
         {
-            
-            if ((taskEntry.IsFocused == true) & (e.Key == Key.Tab) & (taskEntry.Text == Settings1.Default.feedbackTag))
+            if(taskEntry.IsFocused && e.Key == Key.Tab && userFound && lookupMode)
+            {
+                taskEntry.Text += " - ";
+                taskEntry.CaretIndex = taskEntry.Text.Length;
+                lookupMode = false;
+                userFound = false;
+                e.Handled = true;
+            }
+            if ((taskEntry.IsFocused == true) & (e.Key == Key.Tab) & (taskEntry.Text == Settings1.Default.feedbackTag) && !lookupMode)
             {
                 EnableFBMode();
                 e.Handled = true;
@@ -203,6 +225,7 @@ namespace TaskMaster
 
         private void EnableFBMode()
         {
+            lookupMode = true;
             fbIcon.Visibility = Visibility.Visible;
             taskEntry.Width = 410;
             Canvas.SetLeft(taskEntry, (double)55);
@@ -211,18 +234,81 @@ namespace TaskMaster
 
         private void DisableFBMode()
         {
+            lookupMode = false;
             fbIcon.Visibility = Visibility.Hidden;
             taskEntry.Width = 430;
             Canvas.SetLeft(taskEntry, (double)35);
         }
 
+        private void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            ADLookUP();
+        }
+
+        private void ADLookUP()
+        {
+            int searchLength = searchText.Length;
+            if (searchLength < 2) { return; }
+            SearchResult user;
+            DirectorySearcher searcher = null;
+            DirectoryEntry de = new DirectoryEntry("LDAP://epic.com");
+
+            searcher = new DirectorySearcher(de);
+            searcher.PropertiesToLoad.Add("name");
+            searcher.Filter = "(&(objectCategory=User)(objectClass=person)(name=" + searchText + "*))";
+
+            user = searcher.FindOne();
+            if (null != user)
+            {
+                userFound = true;
+                Dispatcher.Invoke(() => {
+                    taskEntry.Text = user.Properties["name"][0].ToString();
+                    taskEntry.CaretIndex = searchLength;
+                });
+            }
+        }
+
         private void taskEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if ((Settings1.Default.fbModeRequireTab == false) & (taskEntry.Text == Settings1.Default.feedbackTag) )
+            if (Settings1.Default.fbModeRequireTab == false)
             {
-                EnableFBMode();
-                e.Handled = true;
-                return;
+                if (taskEntry.Text == Settings1.Default.feedbackTag)
+                {
+                    EnableFBMode();
+                    e.Handled = true;
+                    return;
+                }
+                else if (taskEntry.Text == Settings1.Default.followUpTag)
+                {
+                    taskEntry.Text = "F/U: ";
+                    taskEntry.CaretIndex = 5;
+                    followUpTask = true;
+                    e.Handled = true;
+                }
+            }
+
+        }
+
+        private void taskEntry_KeyDown(object sender, KeyEventArgs e)
+        {     
+            if (userFound && lookupMode)
+            {
+                string currText = taskEntry.Text;
+                int len = taskEntry.CaretIndex;
+                currText = currText.Substring(0, len);
+                taskEntry.Text = currText;
+                taskEntry.CaretIndex = len;
+                userFound = false;
+            } 
+        }
+
+        private void taskEntry_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (lookupMode)
+            {
+                searchText = taskEntry.Text;
+                timer.Stop();
+                timer.Start();
             }
         }
     }

@@ -93,9 +93,21 @@ namespace TaskMaster
         }
         public static void CreateTask(string subject, bool feedbackTask, bool followupTask)
         {
+            string body = "";
+            if (subject.Length >= 100)
+            {
+                int index = subject.IndexOf(" ", 99);
+                if (index > 0)
+                {
+                    body = subject;
+                    subject = subject.Substring(0, index);
+                    subject += "...";
+                }
+            }
             Outlook.ApplicationClass app = new Outlook.ApplicationClass();
             Outlook.TaskItem tsk = (Outlook.TaskItem)app.CreateItem(Outlook.OlItemType.olTaskItem);
             tsk.Subject = subject;
+            tsk.Body = body;
             tsk.Save();
             if (feedbackTask == true)
             {
