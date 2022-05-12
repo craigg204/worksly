@@ -65,18 +65,12 @@ namespace TaskMaster
             }
             else { nextTimerText = "N/A"; }
             
-            EODHardMode_Box.IsChecked = EODHardMode;
-            EODscheduledTime.Value = today.Add(scheduledTime);
-            nextScheduledTimer.Text = timerMessage + nextTimerText;
-            winsSavePathTB.Text = Settings1.Default.winsSavePath + Settings1.Default.winsSaveFile;
             feedbackSavePathTB.Text = Settings1.Default.feedbackFolder;
             TvFToggle.IsChecked = Settings1.Default.enableFBTasks;
             fbToggleString.Text = Settings1.Default.feedbackTag;
             fuToggleString.Text = Settings1.Default.followUpTag;
             fbTABCheck.IsChecked = Settings1.Default.fbModeRequireTab;
-            enableEODCheck.IsChecked = Settings1.Default.enableEOD;
-            TvFToggleChecked();
-            EnableEODClicked();            
+            TvFToggleChecked();        
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -102,9 +96,6 @@ namespace TaskMaster
         private void SaveExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             e.Handled = true;
-            Settings1.Default.EODHardMode = (bool)EODHardMode_Box.IsChecked;
-            Settings1.Default.EODTime = (TimeSpan)(EODscheduledTime.Value - today);
-            Settings1.Default.enableEOD = (bool)enableEODCheck.IsChecked;
             Settings1.Default.enableFBTasks = (bool)TvFToggle.IsChecked;
             if (fbToggleString.Text.Length > 0) { Settings1.Default.feedbackTag = fbToggleString.Text; }
             if (fuToggleString.Text.Length > 0) { Settings1.Default.followUpTag = fuToggleString.Text; }
@@ -175,6 +166,8 @@ namespace TaskMaster
                 fbSaveLabel.Foreground = Brushes.White;
                 toggleFUSetText.Foreground = Brushes.White;
                 feedbackLocationChange.IsEnabled = true;
+                fuSaveLabel.Foreground = Brushes.White;
+                followupLocationChange.IsEnabled = true;
             }
             else
             {
@@ -187,47 +180,21 @@ namespace TaskMaster
                 fbTABCheckLabel.Foreground = disabledText;
                 fbTABCheck.IsEnabled = false;
                 fbTABCheck.IsChecked = Settings1.Default.fbModeRequireTab;
-                if (enableEODCheck.IsChecked == false)
-                {
-                    feedbackLocationChange.IsEnabled = false;
-                    fbSaveLabel.Foreground = disabledText;
-                }
-
+                feedbackLocationChange.IsEnabled = false;
+                fbSaveLabel.Foreground = disabledText;
+                fuSaveLabel.Foreground = disabledText;
+                followupLocationChange.IsEnabled = false;
             }
         }
-        private void EnableEODCheck_Click(object sender, RoutedEventArgs e)
-        {
-            EnableEODClicked();
-        }
-        private void EnableEODClicked()
-        {
-            if (enableEODCheck.IsChecked == true)
-            {
-                hardmodeLabel.Foreground = Brushes.White;
-                EODHardMode_Box.IsEnabled = true;
-                EODTimeLabel.Foreground = Brushes.White;
-                EODscheduledTime.IsEnabled = true;
-                WinsLabel.Foreground = Brushes.White;
-                winsLocationChange.IsEnabled = true;
-                fbSaveLabel.Foreground = Brushes.White;
-                feedbackLocationChange.IsEnabled = true;
-            }
-            else
-            {
-                hardmodeLabel.Foreground = disabledText;
-                EODHardMode_Box.IsEnabled = false;
-                EODHardMode_Box.IsChecked = Settings1.Default.EODHardMode;
-                EODTimeLabel.Foreground = disabledText;
-                EODscheduledTime.IsEnabled = false;
-                WinsLabel.Foreground = disabledText;
-                winsLocationChange.IsEnabled = false;
-                if (TvFToggle.IsChecked == false)
-                {
-                    feedbackLocationChange.IsEnabled = false;
-                    fbSaveLabel.Foreground = disabledText;
-                }
 
-            }
+        private void followupLocationChange_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void taskLocationChange_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

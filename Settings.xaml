@@ -10,10 +10,10 @@
         Title="TaskMaster" SizeToContent="WidthAndHeight" ResizeMode="NoResize" 
         WindowStyle="None" ShowInTaskbar="False" Topmost="True" 
         WindowStartupLocation="CenterScreen" AllowsTransparency="True"
-        Background="Transparent" MouseLeftButtonDown="Window_MouseLeftButtonDown" Visibility="Visible" d:DesignHeight="476.307">
-    <Canvas Width="500" Name="RootLayout" Height="402">
+        Background="Transparent" MouseLeftButtonDown="Window_MouseLeftButtonDown" Visibility="Visible">
+    <Canvas Name="RootLayout" Width="570" Height="364">
         <Rectangle Stroke="Black" StrokeThickness="1" Name="UIPath"
-                   Width="500" Height="402" RadiusX="35" RadiusY="35">
+                   Width="570" Height="364" RadiusX="35" RadiusY="35" >
             <Rectangle.Fill>
                 <RadialGradientBrush>
                     <GradientStop Color="#FF0F0F0F" Offset="1"/>
@@ -24,7 +24,7 @@
         <Button x:Name="CloseButton" Content="X" Style="{StaticResource exitBtn}"
                 HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" 
                 FontFamily="Arial" ForceCursor="True" Width="20" Height="20" 
-                RenderTransformOrigin="1.2,1.25" Canvas.Left="470" Canvas.Top="10" IsTabStop="False"/>
+                RenderTransformOrigin="1.2,1.25" Canvas.Left="535" Canvas.Top="10" IsTabStop="False"/>
         <Label Canvas.Left="10" Foreground="White" FontSize="18" FontFamily="Courier New" Canvas.Top="6">
             <Label.Content>
                 <TextBlock>
@@ -41,77 +41,57 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <xctk:TimePicker x:Name="EODscheduledTime" TimeInterval="0:30:0" DisplayDefaultValueOnEmptyText="True" 
-                         DefaultValue="03/22/2021 17:00:00" Canvas.Left="353" Canvas.Top="188" Format="Custom" 
-                         FormatString="HH:mm:ss" Width="108" Background="Black" Foreground="#FFDDDDDD" 
-                         FontSize="14" RenderTransformOrigin="0.587,0.298" IsEnabled="False" />
-        <Label x:Name="EODTimeLabel" Canvas.Left="38" Foreground="#FF707070" FontSize="16" FontFamily="Courier New" Canvas.Top="186">
-            <Label.Content>
-                <TextBlock RenderTransformOrigin="0.999,2.115">
-                    <Run Typography.Capitals="SmallCaps" Text="End of Day Time:"/>
-                </TextBlock>
-            </Label.Content>
-        </Label>
-        <Label x:Name="hardmodeLabel" Canvas.Left="38" Foreground="#FF707070" FontSize="16" FontFamily="Courier New" Canvas.Top="160">
-            <TextBlock RenderTransformOrigin="0.999,2.115"><Run Typography.Capitals="SmallCaps" Text="Enable End of Day Hardmode:"/></TextBlock>
-        </Label>
-        <CheckBox x:Name="EODHardMode_Box" Canvas.Left="399" Canvas.Top="167" 
-                  IsEnabled="False" />
-        <Label Canvas.Left="38" Foreground="#FF6A6A6A" FontSize="12" FontFamily="Courier New" Canvas.Top="371" Width="423" HorizontalAlignment="Center">
-            <Label.Content>
-                <TextBlock x:Name="nextScheduledTimer" RenderTransformOrigin="0.999,2.115"
-                           Text="Next scheduled end of day pop-up: 23.03.2021 17:00" Width="413" HorizontalAlignment="Center" TextAlignment="Center"/>
-            </Label.Content>
-        </Label>
-        <Label x:Name="WinsLabel" Canvas.Left="38" Foreground="#FF707070" FontSize="16" FontFamily="Courier New" Canvas.Top="212">
-            <TextBlock RenderTransformOrigin="0.999,2.115">
-                <Run Typography.Capitals="SmallCaps" Text="Personal Wins Save Location:"/>
-            </TextBlock>
-        </Label>
-        <Button Canvas.Left="377" Width="60" Height="20" Style="{StaticResource submitBtn}" Content="Change"
-                x:Name="winsLocationChange" Canvas.Top="216" Click="winsLocationChange_Click" IsEnabled="False"/>
-        <Label Canvas.Left="54" Canvas.Top="241" Foreground="#FFBFBFBF" Background="#FF3C3C3C" 
-               Width="394" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock x:Name="winsSavePathTB"  Text="C:/USers/cgutman/Desktop/Wins.txt" FontSize="13" Width="394"/>
-        </Label>
 
-        <Button x:Name="saveButton" Style="{StaticResource submitBtn}" Content="Save" Canvas.Left="212"
-                Canvas.Top="342" Width="76" Height="27"/>
-        <Label x:Name="fbSaveLabel" Canvas.Left="38" Foreground="#FF707070" FontSize="16" FontFamily="Courier New" Canvas.Top="275">
+        <Button x:Name="saveButton" Style="{StaticResource submitBtn}" Content="Save" Canvas.Left="247"
+                Canvas.Top="325" Width="76" Height="27"/>
+        <Label x:Name="tskSaveLabel" Canvas.Left="38" Foreground="White" FontSize="16" FontFamily="Courier New" Canvas.Top="139">
+            <TextBlock RenderTransformOrigin="0.999,2.115"><Run Typography.Capitals="SmallCaps" Text="Tasks Save Location:"/></TextBlock>
+        </Label>
+        <Button Canvas.Left="477" Width="60" Height="20" Style="{StaticResource submitBtn}" Content="Change"
+            x:Name="taskLocationChange" Canvas.Top="142" Click="taskLocationChange_Click" IsEnabled="True" />
+        <Label Canvas.Left="54" Canvas.Top="167" Foreground="#FFBFBFBF" Background="#FF3C3C3C" 
+            Width="394" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock x:Name="taskSavePathTB"  Text="" FontSize="13" Width="394"/>
+        </Label>
+        <Label x:Name="fuSaveLabel" Canvas.Left="38" Foreground="#FF707070" FontSize="16" FontFamily="Courier New" Canvas.Top="199">
+            <TextBlock RenderTransformOrigin="0.999,2.115"><Run Typography.Capitals="SmallCaps" Text="Follow Up Save Location:"/></TextBlock>
+        </Label>
+        <Button Canvas.Left="477" Width="60" Height="20" Style="{StaticResource submitBtn}" Content="Change"
+            x:Name="followupLocationChange" Canvas.Top="202" Click="followupLocationChange_Click" IsEnabled="False" />
+        <Label Canvas.Left="54" Canvas.Top="227" Foreground="#FFBFBFBF" Background="#FF3C3C3C" 
+            Width="394" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock x:Name="followupSavePathTB"  Text="" FontSize="13" Width="394"/>
+        </Label>
+        <Label x:Name="fbSaveLabel" Canvas.Left="38" Foreground="#FF707070" FontSize="16" FontFamily="Courier New" Canvas.Top="259">
             <TextBlock RenderTransformOrigin="0.999,2.115"><Run Typography.Capitals="SmallCaps" Text="Feedback Save Location:"/></TextBlock>
         </Label>
-        <Button Canvas.Left="377" Width="60" Height="20" Style="{StaticResource submitBtn}" Content="Change"
-            x:Name="feedbackLocationChange" Canvas.Top="279" Click="feedbackLocationChange_Click" IsEnabled="False" />
-        <Label Canvas.Left="54" Canvas.Top="304" Foreground="#FFBFBFBF" Background="#FF3C3C3C" 
+        <Button Canvas.Left="477" Width="60" Height="20" Style="{StaticResource submitBtn}" Content="Change"
+            x:Name="feedbackLocationChange" Canvas.Top="262" Click="feedbackLocationChange_Click" IsEnabled="False" />
+        <Label Canvas.Left="54" Canvas.Top="287" Foreground="#FFBFBFBF" Background="#FF3C3C3C" 
             Width="394" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock x:Name="feedbackSavePathTB"  Text="cgutman@epic.com\Tasks\Feedback to Give\" FontSize="13" Width="394"/>
+            <TextBlock x:Name="feedbackSavePathTB"  Text="" FontSize="13" Width="394"/>
         </Label>
         <Label Canvas.Left="38" Foreground="White" FontSize="16" FontFamily="Courier New" Canvas.Top="38">
-            <TextBlock RenderTransformOrigin="0.999,2.115"><Run Typography.Capitals="SmallCaps" Text="Enable Task vs Feedback Toggle:"/></TextBlock>
+            <TextBlock RenderTransformOrigin="0.999,2.115"><Run Typography.Capitals="SmallCaps" Text="Enable Task/Follow-Up/Feedback Toggles:"/></TextBlock>
         </Label>
-        <CheckBox x:Name="TvFToggle" Canvas.Left="399" Canvas.Top="45" 
+        <CheckBox x:Name="TvFToggle" Canvas.Left="499" Canvas.Top="45" 
             Click="TvFToggle_Click"/>
-        <Label Canvas.Left="38" Foreground="White" FontSize="16" FontFamily="Courier New" Canvas.Top="136">
-            <TextBlock RenderTransformOrigin="0.999,2.115"><Run Typography.Capitals="SmallCaps" Text="Enable End of Day Window:"/></TextBlock>
-        </Label>
-        <CheckBox x:Name="enableEODCheck" Canvas.Left="399" Canvas.Top="143" 
-            Click="EnableEODCheck_Click" />
         <Label x:Name="toggleSetText" Canvas.Left="38" Foreground="#FF707070" FontSize="16" FontFamily="Courier New" Canvas.Top="64">
             <TextBlock RenderTransformOrigin="0.999,2.115"><Run Typography.Capitals="SmallCaps" Text="Feedback Toggle:"/></TextBlock>
         </Label>
-        <TextBox x:Name="fuToggleString" Width="50" Height="20"  Canvas.Left="382" Canvas.Top="94"
+        <TextBox x:Name="fuToggleString" Width="50" Height="20"  Canvas.Left="482" Canvas.Top="94"
                  Foreground="White" SelectionBrush="#FF575757" Background="#FF3C3C3C" BorderThickness="0" IsEnabled="False"
                  />
         <Label x:Name="toggleFUSetText" Canvas.Left="38" Foreground="#FF707070" FontSize="16" FontFamily="Courier New" Canvas.Top="88">
             <TextBlock RenderTransformOrigin="0.999,2.115"><Run Typography.Capitals="SmallCaps" Text="Follow Up Toggle:"/></TextBlock>
         </Label>
-        <TextBox x:Name="fbToggleString" Width="50" Height="20"  Canvas.Left="382" Canvas.Top="68"
+        <TextBox x:Name="fbToggleString" Width="50" Height="20"  Canvas.Left="482" Canvas.Top="68"
                  Foreground="White" SelectionBrush="#FF575757" Background="#FF3C3C3C" BorderThickness="0" IsEnabled="False"
                  />
-        <Label x:Name="fbTABCheckLabel" Canvas.Left="38" Foreground="#FF707070" FontSize="16" FontFamily="Courier New" Canvas.Top="111">
+        <Label x:Name="fbTABCheckLabel" Canvas.Left="38" Foreground="#FF707070" FontSize="16" FontFamily="Courier New" Canvas.Top="114">
             <TextBlock RenderTransformOrigin="0.999,2.115"><Run Typography.Capitals="SmallCaps" Text="TAB for Feedback/Follow Up:"/></TextBlock>
         </Label>
-        <CheckBox x:Name="fbTABCheck" Canvas.Left="399" Canvas.Top="118" 
+        <CheckBox x:Name="fbTABCheck" Canvas.Left="499" Canvas.Top="121" 
             IsEnabled="False" />
     </Canvas>
 </Window>
