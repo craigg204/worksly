@@ -70,6 +70,8 @@ namespace TaskMaster
             fbToggleString.Text = Settings1.Default.feedbackTag;
             fuToggleString.Text = Settings1.Default.followUpTag;
             fbTABCheck.IsChecked = Settings1.Default.fbModeRequireTab;
+            taskSavePathTB.Text = Settings1.Default.tasksFolder;
+            followupSavePathTB.Text = Settings1.Default.fuFolder;
             TvFToggleChecked();        
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -115,7 +117,7 @@ namespace TaskMaster
 
         private void feedbackLocationChange_Click(object sender, RoutedEventArgs e)
         {
-            OutlookFolder window = new OutlookFolder();
+            OutlookFolder window = new OutlookFolder(3); // 1=tasks, 2=follow up, 3=feedback
             window.Closed += new EventHandler(window_Closed);
             window.ShowDialog();
             saveButton.Focus();
@@ -189,12 +191,18 @@ namespace TaskMaster
 
         private void followupLocationChange_Click(object sender, RoutedEventArgs e)
         {
-
+            OutlookFolder window = new OutlookFolder(2); // 1=tasks, 2=follow up, 3=feedback
+            window.Closed += new EventHandler(window_Closed);
+            window.ShowDialog();
+            saveButton.Focus();
         }
 
         private void taskLocationChange_Click(object sender, RoutedEventArgs e)
         {
-
+            OutlookFolder window = new OutlookFolder(1); // 1=tasks, 2=follow up, 3=feedback
+            window.Closed += new EventHandler(window_Closed);
+            window.ShowDialog();
+            saveButton.Focus();
         }
     }
 }

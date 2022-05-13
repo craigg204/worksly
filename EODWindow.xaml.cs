@@ -132,7 +132,7 @@ namespace TaskMaster
             if (inputStr.Length == 0) { return; }
             while (Settings1.Default.feedbackFolder.Length == 0)
             {
-                OutlookFolder window = new OutlookFolder();
+                OutlookFolder window = new OutlookFolder(3); // 1=tasks, 2=follow up, 3=feedback
                 window.ShowDialog();
             }
             string[] feedbackArry = inputStr.Split('\n');

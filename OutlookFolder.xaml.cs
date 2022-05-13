@@ -28,7 +28,7 @@ namespace TaskMaster
         public static RoutedCommand taskSubmit = new RoutedCommand();
         public static RoutedCommand closeApp = new RoutedCommand();
 
-        public OutlookFolder()
+        public OutlookFolder(int type) // 1=tasks, 2=follow up, 3=feedback
         {
             InitializeComponent();
             CreateFolderGrid();
@@ -38,6 +38,7 @@ namespace TaskMaster
             this.CommandBindings.Add(cb1);
 
             submitButton.Command = taskSubmit;
+            submitButton.CommandParameter = type;
             CloseButton.Command = closeApp;
 
             KeyGesture kg = new KeyGesture(Key.Enter);
@@ -95,13 +96,17 @@ namespace TaskMaster
 #if DEBUG
             Console.WriteLine(selString);
 #endif
-
             submitButton.Style = (Style)Application.Current.Resources["submitBtnPressed"];
-            Settings1.Default.feedbackFolder = selString;
+            switch (e.Parameter) // 1=tasks, 2=follow up, 3=feedback
+            {
+                case 2: Settings1.Default.fuFolder = selString; break;
+                case 3: Settings1.Default.feedbackFolder = selString; break;
+                default: Settings1.Default.tasksFolder = selString; break;
+            }
             Settings1.Default.Save();
             submitButton.Style = (Style)Application.Current.Resources["submitBtn"];
             e.Handled = true;
-            this.Close();
+            Close();
         }
 
         private void CloseCanExecute(object sender, CanExecuteRoutedEventArgs e)

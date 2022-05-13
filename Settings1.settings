@@ -33,7 +33,10 @@
       <Value Profile="(Default)">;fu</Value>
     </Setting>
     <Setting Name="fuFolder" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\\cgutman@epic.com\Tasks\Follow-Ups</Value>
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="tasksFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

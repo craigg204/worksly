@@ -193,13 +193,6 @@ namespace TaskMaster
         {
             string taskText = taskEntry.Text;
             submitButton.Style = (Style)Application.Current.Resources["submitBtnPressed"];
-            if (taskText == ";eod")
-            {
-                this.Hide();
-                EODWindow window1 = new EODWindow();
-                window1.Show();
-                return;
-            }
             if (taskEntry.Text.Length != 0) { HelperTags.CreateTask(taskText, (fbIcon.Visibility==Visibility.Visible), followUpTask); } //if in feedback mode submit as a feedback task
             //MessageBox.Show(taskText);
             submitButton.Style = (Style)Application.Current.Resources["submitBtn"];
@@ -309,6 +302,12 @@ namespace TaskMaster
                 searchText = taskEntry.Text;
                 timer.Stop();
                 timer.Start();
+            }
+            if (String.IsNullOrWhiteSpace(taskEntry.Text))
+            {
+                userFound = false;
+                followUpTask = false;
+                taskEntry.Text = null;
             }
         }
     }

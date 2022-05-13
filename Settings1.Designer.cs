@@ -145,13 +145,25 @@ namespace TaskMaster {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\\\cgutman@epic.com\\Tasks\\Follow-Ups")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string fuFolder {
             get {
                 return ((string)(this["fuFolder"]));
             }
             set {
                 this["fuFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string tasksFolder {
+            get {
+                return ((string)(this["tasksFolder"]));
+            }
+            set {
+                this["tasksFolder"] = value;
             }
         }
     }
