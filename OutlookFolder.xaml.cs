@@ -1,8 +1,4 @@
-﻿//----------------------------------------------------
-// Copyright 2021 Epic Systems Corporation
-//----------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
