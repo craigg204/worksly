@@ -6,7 +6,7 @@
   </a>
 </p>
 
-> A small collection of tools to help facilitate an Outlook based task management and time logging system
+> A small collection of tools to help facilitate an Outlook based task management and time logging system. More useage details to come.
 
 ## Author
 
