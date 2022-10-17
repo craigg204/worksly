@@ -55,6 +55,7 @@ namespace TaskMaster
         private bool followUpTask = false;
         private bool lookupMode = false;
         private bool userFound = false;
+        private bool apptCreation = true;
 
         Timer timer = new Timer(500);
         private string searchText = "";
@@ -161,6 +162,9 @@ namespace TaskMaster
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);
+            sdEntry.Text = RoundDown(DateTime.Now, TimeSpan.FromMinutes(15)).ToString("HH:mm");
+            edEntry.Text = RoundDown(DateTime.Now, TimeSpan.FromMinutes(15)).AddMinutes(15).ToString("HH:mm");
+            lengthEntry.Text = "0.25";
             taskEntry.Focus();
         }
         protected override void OnSourceInitialized(EventArgs e)
@@ -193,7 +197,16 @@ namespace TaskMaster
         {
             string taskText = taskEntry.Text;
             submitButton.Style = (Style)Application.Current.Resources["submitBtnPressed"];
-            if (taskEntry.Text.Length != 0) { HelperTags.CreateTask(taskText, (fbIcon.Visibility==Visibility.Visible), followUpTask); } //if in feedback mode submit as a feedback task
+            if (taskEntry.Text.Length != 0) { 
+                if (apptCreation) 
+                {
+                    //HelperTags.CreateAppt(taskText, );
+                }
+                else
+                {
+                    HelperTags.CreateTask(taskText, (fbIcon.Visibility == Visibility.Visible), followUpTask); //if in feedback mode submit as a feedback task
+                }
+            } 
             //MessageBox.Show(taskText);
             submitButton.Style = (Style)Application.Current.Resources["submitBtn"];
             e.Handled = true;
@@ -310,5 +323,26 @@ namespace TaskMaster
                 taskEntry.Text = null;
             }
         }
+
+        private void sdEntry_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void edEntry_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void lengthEntry_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private static DateTime RoundDown(DateTime dt, TimeSpan d)
+        {
+            return new DateTime(dt.Ticks / d.Ticks * d.Ticks, dt.Kind);
+        }
+
     }
 }

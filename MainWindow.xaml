@@ -40,12 +40,17 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <Rectangle x:Name="tbBackground" Height="60" Canvas.Left="35" Canvas.Top="40" Width="430">
+        <Rectangle x:Name="tbBackground" Height="28" Canvas.Left="35" Canvas.Top="72" Width="430">
             <Rectangle.Fill>
                 <SolidColorBrush Color="White" Opacity="0.1"/>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBox x:Name="taskEntry" Height="60" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="40" 
+        <Rectangle x:Name="sdBackground" Height="28" Canvas.Left="35" Canvas.Top="40" Width="145">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="White" Opacity="0.1"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBox x:Name="taskEntry" Height="28" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="72" 
                  Width="430" Foreground="White" SelectionBrush="#FF575757" Padding="4" 
                  SpellCheck.IsEnabled="True" BorderThickness="0" CaretBrush="White" FontSize="16" 
                  MaxLines="2" MinLines="1" Background="{x:Null}" TextChanged="taskEntry_TextChanged"
@@ -54,5 +59,27 @@
                Source="/Icons/FeedbackBubble_16x.png" Visibility="Hidden" Opacity="0.6"/>
         <Button x:Name="submitButton" Style="{StaticResource submitBtn}" Content="Submit" Canvas.Left="212"
                 Canvas.Top="115" Width="75" Height="27"/>
+        <Rectangle x:Name="edBackground" Height="28" Canvas.Left="185" Canvas.Top="40" Width="145">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="White" Opacity="0.1"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="lenBackground" Height="28" Canvas.Left="335" Canvas.Top="40" Width="130">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="White" Opacity="0.1"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBox x:Name="sdEntry" Height="28" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="40" 
+                 Width="145" Foreground="White" SelectionBrush="#FF575757" Padding="4" 
+                 BorderThickness="0" CaretBrush="White" FontSize="16" 
+                 MaxLines="1" MinLines="1" Background="{x:Null}" KeyUp="sdEntry_KeyUp" MaxLength="5"/>
+        <TextBox x:Name="edEntry" Height="28" Canvas.Left="185" TextWrapping="Wrap" Canvas.Top="40" 
+                 Width="145" Foreground="White" SelectionBrush="#FF575757" Padding="4" 
+                 BorderThickness="0" CaretBrush="White" FontSize="16" 
+                 MaxLines="1" MinLines="1" Background="{x:Null}" KeyUp="edEntry_KeyUp" MaxLength="5"/>
+        <TextBox x:Name="lengthEntry" Height="28" Canvas.Left="335" TextWrapping="Wrap" Canvas.Top="40" 
+                 Width="130" Foreground="White" SelectionBrush="#FF575757" Padding="4" 
+                 BorderThickness="0" CaretBrush="White" FontSize="16" 
+                 MaxLines="1" MinLines="1" Background="{x:Null}" KeyUp="lengthEntry_KeyUp" MaxLength="5"/>
     </Canvas>
 </Window>

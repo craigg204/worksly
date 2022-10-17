@@ -120,6 +120,16 @@ namespace TaskMaster
                 tsk.Move(folder);
             }
         }
+
+        public static void CreateAppt(string title, DateTime startTime, DateTime endTime)
+        {
+            Outlook.ApplicationClass app = new Outlook.ApplicationClass();
+            Outlook.AppointmentItem appt = (Outlook.AppointmentItem)app.CreateItem(Outlook.OlItemType.olAppointmentItem);
+            appt.Subject = title;
+            appt.Start = startTime;
+            appt.End = endTime;
+            appt.Save();
+        }
         // Returns Folder object based on folder path
         private static Outlook.MAPIFolder GetFolder(string folderPath)
         {
