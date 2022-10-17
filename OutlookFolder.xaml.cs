@@ -18,7 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
-namespace TaskMaster
+namespace Worksly
 {
     /// <summary>
     /// Interaction logic for OutlookFolder.xaml

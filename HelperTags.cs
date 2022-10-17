@@ -13,7 +13,7 @@ using System.Windows;
 using Forms = System.Windows.Forms;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
-namespace TaskMaster
+namespace Worksly
 {
     class HelperTags
     {

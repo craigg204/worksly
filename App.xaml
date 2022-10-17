@@ -1,7 +1,7 @@
-﻿<Application x:Class="TaskMaster.App"
+﻿<Application x:Class="Worksly.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TaskMaster"
+             xmlns:local="clr-namespace:Worksly"
              StartupUri="MainWindow.xaml"
              ShutdownMode="OnExplicitShutdown">
     <Application.Resources>

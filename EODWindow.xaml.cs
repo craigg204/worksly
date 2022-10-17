@@ -20,7 +20,7 @@ using System.Windows.Interop;
 using System.Runtime.InteropServices;
 using System.IO;
 
-namespace TaskMaster
+namespace Worksly
 {
     /// <summary>
     /// Interaction logic for EODWindow.xaml

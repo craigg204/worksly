@@ -17,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 
-namespace TaskMaster
+namespace Worksly
 {
     /// <summary>
     /// Interaction logic for Settings.xaml

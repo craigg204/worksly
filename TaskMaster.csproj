@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9A4BB6E4-1C7D-4C15-AEE5-F5849D7D6BDC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>TaskMaster</RootNamespace>
-    <AssemblyName>TaskMaster</AssemblyName>
+    <RootNamespace>Worksly</RootNamespace>
+    <AssemblyName>Worksly</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -67,6 +67,9 @@
   <PropertyGroup>
     <ApplicationIcon>Icons\TM_Icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Worksly.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
@@ -115,6 +118,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="HelperTags.cs" />
+    <Compile Include="SystemBarViewModel.cs" />
     <Compile Include="TimerPlus.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -144,7 +148,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings1.settings</DependentUpon>
     </Compile>
-    <Compile Include="SysBarViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

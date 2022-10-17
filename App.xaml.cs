@@ -15,7 +15,7 @@ using System.Windows.Interop;
 using System.Runtime.InteropServices;
 using System.Timers;
 
-namespace TaskMaster
+namespace Worksly
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -32,7 +32,7 @@ namespace TaskMaster
             //initialize NotifyIcon
             tb = (Hardcodet.Wpf.TaskbarNotification.TaskbarIcon)FindResource("MyTaskBarIcon");
 #if DEBUG
-            tb.ToolTipText = "TaskMaster Testing";
+            tb.ToolTipText = "Worksly Testing";
 #endif
             timer.Elapsed += new ElapsedEventHandler(HelperTags.Timer_Elapsed);
             timer.AutoReset = false;

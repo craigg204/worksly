@@ -23,7 +23,7 @@ using System.DirectoryServices.AccountManagement;
 using System.DirectoryServices;
 using System.Timers;
 
-namespace TaskMaster
+namespace Worksly
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
