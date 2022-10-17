@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TaskMaster {
+namespace Worksly {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
