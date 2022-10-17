@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Worksly
+namespace TaskMaster
 {
     public class TimerPlus : System.Timers.Timer
     {

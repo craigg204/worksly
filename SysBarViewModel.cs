@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Worksly
+namespace TaskMaster
 {
     /// <summary>
     /// Provides bindable properties and commands for the NotifyIcon. In this sample, the

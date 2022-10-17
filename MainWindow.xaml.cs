@@ -1,4 +1,8 @@
-﻿using System;
+﻿//----------------------------------------------------
+// Copyright 2021 Epic Systems Corporation
+//----------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +23,7 @@ using System.DirectoryServices.AccountManagement;
 using System.DirectoryServices;
 using System.Timers;
 
-namespace Worksly
+namespace TaskMaster
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
