@@ -22,11 +22,11 @@
                         <Image Source="/Icons/Settings.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Name="updateMenu" Header="Check for Updates" Command="{Binding CheckForUpdateCommand}">
+                <!--<MenuItem Name="updateMenu" Header="Check for Updates" Command="{Binding CheckForUpdateCommand}">
                     <MenuItem.Icon>
                         <Image Source="/Icons/CloudDownload_16x.png"/>
                     </MenuItem.Icon>
-                </MenuItem>
+                </MenuItem>-->
                 <Separator/>
                 <MenuItem Header="Exit App" Command="{Binding ExitApplicationCommand}">
                     <MenuItem.Icon>

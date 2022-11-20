@@ -1,0 +1,94 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+<PropertyGroup>
+	<TargetFramework>net6.0-windows</TargetFramework>
+	<OutputType>WinExe</OutputType>
+	<RootNamespace>Worksly</RootNamespace>
+	<AssemblyName>Worksly</AssemblyName>
+	<IsWebBootstrapper>false</IsWebBootstrapper>
+	<Install>true</Install>
+	<MapFileExtensions>true</MapFileExtensions>
+	<CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+	<WebPage>publish.htm</WebPage>
+	<ApplicationRevision>1</ApplicationRevision>
+	<ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+	<UseApplicationTrust>false</UseApplicationTrust>
+	<PublishWizardCompleted>false</PublishWizardCompleted>
+	<BootstrapperEnabled>true</BootstrapperEnabled>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<UseWindowsForms>true</UseWindowsForms>
+	<UseWPF>true</UseWPF>
+	<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+</PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icons\TM_Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Worksly.App</StartupObject>
+    <OutputType>WinExe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="TimerPlus.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\TM_Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CloseSolution.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\AddForm_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\bulkArrow.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\endArrow.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\lineArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\endArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\endArrow-White.png" />
+    <Resource Include="Icons\lineArrow-White.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\FeedbackBubble_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CloudDownload_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.346202">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.4.0" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Office.Interop.Outlook" Version="15.0.4797.1004" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
+  </ItemGroup>
+</Project>
