@@ -1,0 +1,85 @@
+﻿<Window x:Class="Worksly.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:tb="http://www.hardcodet.net/taskbar" 
+        xmlns:local="clr-namespace:Worksly"
+        mc:Ignorable="d"
+        Title="Worksly" SizeToContent="WidthAndHeight" ResizeMode="NoResize" 
+        WindowStyle="None" ShowInTaskbar="False" Topmost="True" 
+        WindowStartupLocation="CenterScreen" AllowsTransparency="True"
+        Background="Transparent" MouseLeftButtonDown="Window_MouseLeftButtonDown" Visibility="Visible">
+    <Canvas Width="500" Height="153" Name="RootLayout">
+        <Rectangle Stroke="Black" StrokeThickness="1" Name="UIPath"
+                   Width="500" Height="153" RadiusX="35" RadiusY="35">
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF0F0F0F" Offset="1"/>
+                    <GradientStop Color="#FF212123" Offset="0.291"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Button x:Name="CloseButton" Content="X" Style="{StaticResource exitBtn}"
+                HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" 
+                FontFamily="Arial" ForceCursor="True" Width="20" Height="20" 
+                RenderTransformOrigin="1.2,1.25" Canvas.Left="470" Canvas.Top="10" IsTabStop="False"/>
+        <Label Canvas.Left="10" Foreground="White" FontSize="18" FontFamily="Courier New" Canvas.Top="6">
+            <Label.Content>
+                <TextBlock>
+                    <Run Typography.Capitals="SmallCaps" Text="Task"/><Run Typography.Capitals="SmallCaps" Text="Master"/>
+                </TextBlock>
+            </Label.Content>
+        </Label>
+        <Border Height="1" Canvas.Left="15" Canvas.Top="31" Width="165">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="Black" Offset="1" />
+                    <GradientStop Color="#FFC3C3C3"/>
+                    <GradientStop Color="#FFC3C3C3" Offset="0.65"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Rectangle x:Name="tbBackground" Height="28" Canvas.Left="35" Canvas.Top="72" Width="430">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="White" Opacity="0.1"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="sdBackground" Height="28" Canvas.Left="35" Canvas.Top="40" Width="145">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="White" Opacity="0.1"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBox x:Name="taskEntry" Height="28" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="72" 
+                 Width="430" Foreground="White" SelectionBrush="#FF575757" Padding="4" 
+                 SpellCheck.IsEnabled="True" BorderThickness="0" CaretBrush="White" FontSize="16" 
+                 MaxLines="2" MinLines="1" Background="{x:Null}" TextChanged="taskEntry_TextChanged"
+                 KeyDown="taskEntry_KeyDown" KeyUp="taskEntry_KeyUp"/>
+        <Image x:Name="fbIcon" Canvas.Left="40" Canvas.Top="47" Width="16" Height="16"
+               Source="/Icons/FeedbackBubble_16x.png" Visibility="Hidden" Opacity="0.6"/>
+        <Button x:Name="submitButton" Style="{StaticResource submitBtn}" Content="Submit" Canvas.Left="212"
+                Canvas.Top="115" Width="75" Height="27"/>
+        <Rectangle x:Name="edBackground" Height="28" Canvas.Left="185" Canvas.Top="40" Width="145">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="White" Opacity="0.1"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="lenBackground" Height="28" Canvas.Left="335" Canvas.Top="40" Width="130">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="White" Opacity="0.1"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBox x:Name="sdEntry" Height="28" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="40" 
+                 Width="145" Foreground="White" SelectionBrush="#FF575757" Padding="4" 
+                 BorderThickness="0" CaretBrush="White" FontSize="16" 
+                 MaxLines="1" MinLines="1" Background="{x:Null}" KeyUp="sdEntry_KeyUp" MaxLength="5"/>
+        <TextBox x:Name="edEntry" Height="28" Canvas.Left="185" TextWrapping="Wrap" Canvas.Top="40" 
+                 Width="145" Foreground="White" SelectionBrush="#FF575757" Padding="4" 
+                 BorderThickness="0" CaretBrush="White" FontSize="16" 
+                 MaxLines="1" MinLines="1" Background="{x:Null}" KeyUp="edEntry_KeyUp" MaxLength="5"/>
+        <TextBox x:Name="lengthEntry" Height="28" Canvas.Left="335" TextWrapping="Wrap" Canvas.Top="40" 
+                 Width="130" Foreground="White" SelectionBrush="#FF575757" Padding="4" 
+                 BorderThickness="0" CaretBrush="White" FontSize="16" 
+                 MaxLines="1" MinLines="1" Background="{x:Null}" KeyUp="lengthEntry_KeyUp" MaxLength="5"/>
+    </Canvas>
+</Window>
